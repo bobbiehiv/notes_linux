@@ -1,0 +1,19 @@
+
+=============================================
+add to sudo 
+=============================================
+
+to add a user to the sudoers file use 
+
+$ sudo visudo
+
+in the text file that opens under 
+
+# User Privilege Specification 
+
+add the user name with ALL=(ALL:ALL) ALL
+
+bobbie  ALL=(ALL:ALL) ALL
+
+ctrl x to exit, y to save 
+
