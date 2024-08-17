@@ -1,0 +1,44 @@
+
+================================================
+
+SSH to Windows server 
+
+================================================
+
+Install optional features (settings > Apps > Optional Features)
+
+	-open ssh server 
+	-open ssh client
+
+Then to services applet
+
+	-Set open SSH startup to automatic
+
+Set Firewall
+
+	Powershell
+		Get-NetFirewallRule -name *ssh*
+
+tftp
+
+Download Solarwinds TFTP
+
+	Start 
+	
+	On Client
+
+	-Turn winkdows features on or off > check TFTP client
+
+
+	On server 
+
+	Windows Firewall > allow another app > Browse
+	
+	-find the TFTP.exe  "System32 on both pc's
+
+	-might have to add TFTPServer to allow, 
+		and SolarWinds TFTP server in firewall
+
+	(if running VM Nics, bind to all addresses)
+
+	

@@ -1,0 +1,52 @@
+
+ls			show files
+ls -a 			Show hidden files
+ls -l			show files in list
+
+adduser			add user
+
+cat			look into more
+
+nano			file editer
+
+Touch			quick way to create files
+
+Cd 			Change dir
+cd /etc 		change to root with abosolute path
+cd etc			change dir to relative path
+
+mkdir			Make Dir
+mv			use to rename or mv
+chown			change ownership #root:root (file)
+chmod			change permissions 
+
+rm			-r or -f remove for good
+
+locate [file]		shows all instances or name
+whereis	[file]		shows where it is
+find			finding files by varibles
+echo			show the contents of var in sys
+echo $PATH		shows paths
+  which []		where bin is located amoung path var
+
+pwd			Print working dir
+
+ps aux			procesess
+ps aux | grep		filters processes 
+grep			filter cmd
+
+sudo systemctl start 	starts progrman
+
+--help 			help for program (word uses double -)
+-h			
+
+man [program]		manual for program
+
+clear			clear screen
+
+bin 			same as exe
+
+=============darkweb==================
+
+apt-get install tor -y 	
+

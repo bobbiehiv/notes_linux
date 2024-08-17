@@ -1,0 +1,99 @@
+
+================================================================
+Arch Linux install
+================================================================
+#
+$ load keys us
+$ set font <font>
+#
+Verify internet connection
+$ ip addr
+$ ip link
+$ ping 8.8.8.8
+#
+Time and Date
+$ timedatectl		# check
+#
+=================================================================
+Partition
+=================================================================
+#
+$ lsblk			# lists storage
+$ cfdisk
+- choose GPT-
+- Clear out space/ delete other partitions
+- Create 100M partition = /dev/sda1	(boot)
+- Create 4G partition = /dev/sda2	(swap)	
+- Create [Freespace] = /dev/sda3	(everything)
+- Write > yes > quit
+$ lsblk			# check
+#
+$ mkfs.ext4 /dev/sda3
+$ mkfs.fat -F 32 /dev/sda1
+$ mkswap /dev/sda2
+#
+Mount Partitions
+$ mkdir -p /mnt/boot/efi	(the boot needs a dir to mount to) 
+$ mount /dev/sda3 /mnt
+$ mount /dev/sda1 /mnt/boot/efi
+$ swapon /dev/sda2
+#
+=================================================================
+Installation
+=================================================================
+#
+$ pacstrap -k /mnt base linux linux-firmware
+#	other options
+#	sof-firmware	efibootmgr
+#	base-devel	nano
+#	grub		networkmanager
+#
+$ gen fstab
+$ gen fstab > /mnt/etc/fstab
+#
+=================================================================
+Enter Arch!
+=================================================================
+#
+$ arch-chroot /mnt
+$ ln-sf /usr/share/zoneinfo/America/Newyork /etc/localtime
+$ date
+$ hwclock --systohc
+#
+Locale
+#
+$ nano /etc/locale.gen
+-Unhash your locale ex.#en_US.UTF-8 
+-ctrl-o, ctrl-x
+Language 
+$ nano /etc/locale.conf
+-add- "LANG=[locale you unhashed]
+-ctrl-o, ctrl-x
+#
+=================================================================
+Users and root password
+=================================================================
+#
+$ passwd		# Create root password
+#
+User
+#
+$ useradd -m -G wheel -s /bin/bash USERNAME
+$ passwd USERNAME # Create user password
+#
+Sudo
+#
+$ EDITOR=nano visudo
+-Uncomment the rights for the desired wheel group
+#
+$ system.ctl enable NetworkManager
+#
+$ grub-install /dev/sda
+$ grub-mkconfig -o /boot/grub/grub.cfg
+#
+=================================================================
+Restart!
+=================================================================
+#
+
+
