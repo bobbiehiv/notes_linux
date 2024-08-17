@@ -1,0 +1,193 @@
+
+
+=====================================================
+
+/dev and /sys/devices
+
+=====================================================
+
+Device files are stored in the /dev dir
+
+/dev/null is a black hole 
+
+$ echo blah blah > /dev/null 
+
+	sends blah blah to nothing, effectively destroying it
+
+/dev/zero writes a stream of null bits over whatever it is 
+
+	basically destroying anything on the disk
+
+Run $ ls -l 
+	the first bit of charcter tells you what type of device
+
+B = block; C = character; P = pipe; S = socket
+
+Block devices - programs can access data from a block device in fixed chunks 
+	think disk devices
+Character devices - work with data streams, you can only read from or write to 
+	like /dev/null there is no size 
+	think printers
+Pipe devices - 'named pipes' like character devices with another process at the 
+	end of the I/O stream of a kernal 
+Socket devices - special purpose interfaces that are frequently used for 
+	interprocess communication 
+		often found outside of /dev
+
+	* note not all devices have device files ex. network interfaces 
+
+The kernal will assign devices in the order it is found so a device may have a different name 
+between boots....
+	so we have sysfs to providde a uniform view for attached devices
+		base path = /sys/devices 
+
+Notes 
+
+	/dev files enable user processes to use the device 
+	/sys/devices is used to view information and manage devices 
+
+to get more file info 
+
+$ udevadm info --query=all --name=/dev/sda
+
+=================================
+using dd
+=================================
+
+dd copies data in blocks of a fixed size
+
+ex 
+$ dd if=/dev/zero of=new_file bs=1024 count=1
+
+	copies a single 1024 byte block from /dev/zero to new_file
+		/dev/zero is a continous stream of zero bytes)
+dd options 
+	not used like other commands instead it names an option and 
+		make the option=value
+	if=file 
+		the input file
+	of=file
+		the output file
+	bs=size
+		the block size in bytes, use b and k to represent 
+		b = 512; k = 1024; ex bs=1k is bs=1024
+	ibs=size
+	obs=size
+		the input and output bs
+	count=num 
+		the total number of blocks to copy, set the limit
+	skip=num
+		skip past the first number of blocks in the file or stream
+
+=====================================
+device name summary 
+=====================================
+
+ways to fin the name of a device 
+
+- query udevd using udevadm 
+- look in the /sys dir 
+- guess the name of the of the outupt of journalctl -k
+- if its already visable check the output of the mount command 
+- run cat /proc/devices to see the block and character devices for 
+	which your system currently has driver 
+the first is by far the most reliable 
+
+=======================================
+Hard disks
+=======================================
+
+device names with the sd prefix 
+
+	/dev/sda /dev/sdb
+
+partitions are named like as 
+
+	/dev/sda1 /dev/sda2
+
+sd stands for scsi or small computer systems interface 
+
+to list scsi devices run
+
+$ lsscsi
+		*might have to install lsscsi
+
+because the kernetl adds drivers in the order they are found 
+	ex; /dev/sda /dev/sdb /dev/sdc 
+
+if you loose one, for example /dev/sdb 
+
+	on next load, /dev/sdc will take /dev/sdb's place 
+
+to solve this use 
+
+	UUID = universally unique Identifiers 
+and 	LVM = Logical volume manager 
+
+
+----Virtual disks use /dev/xvd* and /dev/vd*
+
+----Non volatile memory devices use /dev/nvme*
+	use $ nvme list 
+
+----device mapper uses /dev/dm-* /dev/mapper/*
+	a step up from disk and block storage is LVM 
+	which uses device mapper 
+
+----cd and dvd drives use /dev/sr*
+
+----PATA hard disks use /dev/hd*
+	Parrell ATA is an older storage bus
+	all common on older linux kernel versions 
+	
+----Terminals use /dev/tty* /dev/pts/* and /dev/tty
+
+	terminals are devices for moving characters between a user process 
+	and I/O devices
+	two common terminal devices are /dev/tty1 (the first virtual console)
+		and /dev/pts/0 (the first psuedoterminal device)
+
+
+==========================================
+serial ports 
+==========================================
+
+the port known as COM1 on windows is /dev/ttyS1; etc 
+
+	USB serial show up as /dev/ttyUSB0; or /dev/ttyACM0
+
+		you can connect to some of these devices like boards etc
+		with the command 
+
+$ screen /dev/ttyACM0 
+
+
+==========================================
+Audio devices
+==========================================
+
+Linux has two sets of audio devices There are seperate devices for 
+
+ALSA - advanced linux soudn arcitexture 
+OSS - Open sound system 
+ 
+Alsa devices are in the /dev/snd directory but are difficult to work with 
+
+	there are easier to use user space servers such as pulse audio 
+	oppoosed to kernel space like ALSA ans OSS
+
+=========================================
+Device file creation
+=========================================
+
+use the mknod command 
+
+# mknod /dev/sda1 b 8 1 
+
+	b 8 1 = blockdevice; major number; minor number 
+
+
+
+
+	
+

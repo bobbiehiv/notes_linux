@@ -1,0 +1,26 @@
+
+===============================================
+
+Changing neofetch ascii art 
+
+===============================================
+
+==from reddit comment==
+
+create a ascii art photo with whatever 
+
+Then specify the path of the txt file with this command 
+
+$ neofetch --ascii "$(cat/home/bobbie/Documents/ascii/nixondots.txt)"
+
+Then make it default with neofetch via sudo nano
+
+Enter
+
+~/.zshrc or ~/. bashrc 
+
+insert the line 
+
+neofetch --ascii "$(cat/home/bobbie/Documents/ascii/nixondots.txt)"
+
+

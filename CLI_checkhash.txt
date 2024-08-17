@@ -1,0 +1,23 @@
+
+
+=====================================================================
+
+command to verifiy hashes 
+
+=====================================================================
+
+Windows 
+
+> CertUtil -hashfile filename MD5 / CertUtil -hashfile filename SHA256
+
+Linux 
+
+$ md5sum filename / sha256sum filename
+
+
+filezilla exampple 
+
+Size: 5982016 bytes
+
+SHA-512 hash: 0004fcb1485f3ac3f065efee7be82dd4bf47a1c33dd6cd9f260228714bf00993aad14f2ee023d12f9fd5a2da456488564755afb1196c9dd82d8ab5561260485e
+	      0004fcb1485f3ac3f065efee7be82dd4bf47a1c33dd6cd9f260228714bf00993aad14f2ee023d12f9fd5a2da456488564755afb1196c9dd82d8ab5561260485e	

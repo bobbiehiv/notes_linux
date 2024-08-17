@@ -1,0 +1,48 @@
+
+
+======================================================
+
+Wifi driver fix 
+
+======================================================
+
+Check distro and such
+
+$ lsb_release -a 
+
+-- then do some updates and upgrades --
+
+$ sudo apt update
+
+& sudo apt upgrade
+
+$ sudo apt dist-upgrade -y
+
+$ sudo reboot
+
+--restart the machine 
+
+$ lsusb
+
+$ sudo apt install realtek-rtl88xxau-dkms
+
+$ sudo apt install dkms
+
+-- it should work but it may not
+
+$ git clone https://github.com/aircrack-ng/rtl8812au
+
+$ cd rtl8812au/
+
+$ make
+
+$ make install 
+
+might have to unplug and plug back in 
+
+$ sudo wifite to check surroundings wifis
+
+
+
+
+

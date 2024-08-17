@@ -1,0 +1,40 @@
+
+
+==================================================
+
+chmod
+
+=================================================
+
+
+- rw- r-- r-- 
+
+first dash is the type (-) is a file and (d) is a directory
+
+then user permisions, group permisions, and other permisions 
+
+read = r; write = w; execute = x; nothing = -; setuid = s;
+
+to use this command 
+
+	- first pick the set of permisions you want to change 
+	- then pick the bit to change 
+
+examples 
+
+$ chmod g+r filename 
+	- adds read to the group section 
+$ chmod o+r filename 
+	- adds read to others 
+$ chmod go+r filename 
+	- does both 
+
+you can also use absolute changes 
+
+$ chmod 644 filename 
+
+	where 644 is binary 
+
+ 6 = user 4 = group 4 = other 
+
+

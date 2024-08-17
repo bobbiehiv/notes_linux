@@ -1,0 +1,113 @@
+
+
+=================================
+
+commands_notes
+
+=================================
+
+===============
+$ grep 
+===============
+
+The grep command prints the lines from the input stream
+that match an expresion. 
+
+$ grep root /etc/passwd
+
+Prints instances of root in passwd
+
+$ grep root /etc/*
+
+prints instances of root in in all files in etc/
+
+options    	-i = case senstive matches 
+		-v = invert the search
+
+==============
+less
+==============
+
+use the command less to scroll thru files. 
+
+- spacebar to go forward
+- b to go back 
+- q to exit
+
+	/word search forward for a word in less 
+	?word search backward for a word in less
+
+- you can also search for words or parts of words. 
+
+$ grep ie /usr/share/dict/words | less
+
+--searches for all instances of ie in that file words
+
+==============
+diff
+==============
+
+to see the differences between two text files use diff
+
+$ diff file1 file2
+
+$ diff -u file1 file2 
+
+-- shows in a more tolerable format
+
+==============
+file
+==============
+
+to see the type of file a file is 
+
+==============
+find
+==============
+
+find and locate can find files and dir, 
+look up man pages 
+
+==============
+Head and tail
+==============
+
+$ head /etc/passwd
+
+shows the first ten lines
+
+$ tail /etc/passwd
+
+shows the last 10 
+
+use the -n switch to choose how many lines
+
+$ tail -20 /etc/passwd
+
+=============
+sort
+=============
+
+sort puts them in alphanumeric order. 
+
+$ sort file1
+
+$ sort -n file1 
+
+- numbered order 
+
+$ sort -r file1 
+
+- reverse
+
+
+
+Note about regular expresions 
+
+		.* matches any number of charcters 
+			including none
+		.+ matches any one or more charcters
+		.  matches exactly one arbitrary 
+			character
+
+

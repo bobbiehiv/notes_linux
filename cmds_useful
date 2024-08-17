@@ -1,0 +1,52 @@
+
+
+====================================================
+
+Useful commands 
+
+====================================================
+
+	Sudo Logs 
+
+$ journalctl SYSLOG_IDENTIFIER=sudo
+
+
+	run files in the background, keep the shell 
+
+$ command &
+	
+	if youre remote and want the program to keep runing 
+
+$ nohup
+
+	File ziping
+
+$ gunzip file.gz 
+	uncompress 
+	
+$ gunzip file
+	compress
+
+	Create a Tar file
+
+$ tar cvf archive.tar file1, file2 
+
+	cvf = create, verbose, file option
+
+$ tar xvf archive.tar 
+
+	xvf = extract, verbose, file option 
+
+$ tar tvf archive.tar 
+	
+	tvf = contents, verbose, file option
+
+	
+	zcat
+
+$ zcat file.tar.gz | tar zvf - 
+
+$ tar ztvf file.tar.gz
+
+	
+

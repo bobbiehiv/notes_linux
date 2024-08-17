@@ -1,0 +1,24 @@
+
+
+==================================
+
+Remove Folders from Dir
+
+==================================
+
+Go to the file below 
+
+~/ .config/user-dirs.dirs
+
+and comment out the dir you dont wish to have show up 
+
+Then go to the below via sudo 
+
+/etc/xdg/user-dirs.defaults
+
+and comment out the shortcuts you dont want
+
+----- but probably the easiest way is to rename the folders to .dirs/ so they are hidden!
+
+
+

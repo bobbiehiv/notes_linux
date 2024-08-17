@@ -1,0 +1,51 @@
+
+
+======================================
+
+Alfa wireless adaptor
+
+=====================================
+
+Check the usb 
+
+$ lsusb
+
+git source and clone
+
+$ git clone https://github.com/aircrack-ng/rtl8812au.git
+
+go into the dir and 
+
+$ sudo make
+
+--if CROSS compile and no such file found error after sudo make
+
+----$ sudo apt-get install linux-headers-$(uname -r)
+
+then run 
+
+$ sudo make install
+
+Reboot
+
+$ systemctl reboot
+
+check it 
+
+$ sudo iw dev
+
+=======================
+Monitor mode
+=======================
+
+check to see if the interface is available after reboot 
+
+$ sudo ip link set [interface] down
+
+$ sudo iw interface set monitor control
+
+$ sudo ip link set [interface] up
+
+---if using wire shark may have to run as sudo and/ or run in promiscious mode
+
+

@@ -1,0 +1,54 @@
+
+
+=======================================================
+
+rsync
+
+======================================================
+
+recursively update directories and files with rsync
+
+# rsync file1.txt file2.txt
+
+	Parameters 
+ the -a parameter is a meta parameter that does a bunch 
+	of others (-rlptgoD)
+
+-r	recursive 
+-l	copy symlinks as new symlinks
+-p	preserve permissions 
+-t	preserve modification times
+-g	preserve group ownership
+-o	preserve user ownership
+-D	cop device files
+
+Other options 
+
+-n	Dry run the command with out transfer 
+--list-only	only show the file that would transfer 
+-P	show progress per file
+-v	show progree overall
+-u	skip updating if they are newer than the source 
+-q	quiet mode 
+--existing	   only update files, but dont create missing ones 
+--files-from=FILE  Read list source files from a text file
+--exclude=PATTERN  Use PATTERN to exclude files from the sync
+--exclude-from=FILE  Same as above, but read from a file
+--include=PATTERN   Also used to negate the exclusion rules
+--include-from=FILE Same as above, but read from a file
+
+$ rsync -avup Documents/ bobbie@otherspot: (remote path)
+
+Example 
+
+$ mkdir onespot
+$ mkdir twospot
+$ cd onespot
+$ touch this 
+$ touch that 
+$ cd ..
+$ rsync -a ~/onespot/ ~/two/spot/
+
+
+
+

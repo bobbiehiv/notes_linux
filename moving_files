@@ -1,0 +1,16 @@
+
+
+
+==========================
+
+Moving Files 
+
+==========================
+
+mv -t [destinaviton_path] file1 file2
+
+or use wildcard, and transfer all a type of file 
+
+mv *.doc /path/to/the/dir/
+
+

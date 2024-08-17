@@ -1,0 +1,72 @@
+
+============================================================================
+
+Disk Partitioning 
+
+============================================================================
+
+Linux Partitioning tools 
+
+parted - text based tool that supports but MBR and GPT
+
+gparted - a graphical verison of parted
+
+fdisk - a traditional partitioning tool, recently support for MBR and GPT
+	
+	* Note parted works in realtime, where as fdisk makes the 
+	change once you exit and confirm
+
+View your systems partition table with 
+
+$ parted -l  $ fdisk - l 
+
+When runing 
+
+$ sudo journalctl -k | grep sda 
+
+you can see the following 
+
+	Aug 01 16:06:20 Debbies kernel:  sda: sda1 sda2 < sda5 >
+
+		sda2 <sda5> means that sda2 is an extended partition containing 
+		one logical partition, <sda5>
+	
+concerns when modifying partitions 
+
+	make sure to back up
+
+	and ensure no partitions on your target disk are in use
+		(linux will auto mount detected filesystems)
+
+$ udevadm monitor --kernel 
+	watch the devices being partitioned 
+
+Check out proc/partitions for full partition info
+
+======================================
+Creating a partition table 
+======================================
+
+start at the command prompt with the devices name 
+
+# fdisk /dev/sda
+	you'll receive the following prompt
+	Command (m for help): 
+			    : p (to print the the current table)
+			    : d (to delete the current table)
+			    : n (for new partion)
+			    Partition type: p (primary) or e (extended)
+			    Partition number: 1 - 4 
+			    first sector: 2048 - 836127 (defaults fine)
+			    last sector: +200M (or other size)
+
+			    Next partition is the same with all defaults to take 
+			    the rest of the space
+			    when finished use 
+			    : p (print)
+			    : w (write)
+
+
+
+
+

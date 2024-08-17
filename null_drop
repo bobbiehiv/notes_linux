@@ -1,0 +1,13 @@
+
+
+==========================
+
+/dev/null
+
+==========================
+
+point any file to nothing 
+
+and trash it 
+
+$ file1 l> /dev/null

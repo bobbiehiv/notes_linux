@@ -1,0 +1,27 @@
+
+
+===========================================
+
+Tar Files
+
+===========================================
+
+Extracting tar files 
+
+$ tar -xf files.tar
+
+-- add -v (verbose) to see in action
+
+to list the contents on a tar use -t 
+
+to extart to a different dir use -c 
+
+you can only extract certian if you want 
+
+$ tar -xf files.tar file1.txt file2.txt
+
+and/ or use wildcards. 
+
+$ tar -xf files.tar --wildcards '*.txt'
+
+

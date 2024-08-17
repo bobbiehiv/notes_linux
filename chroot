@@ -1,0 +1,67 @@
+
+====================================
+
+Making a Chroot in Debian 
+
+=====================================
+
+first check to see if you have a chroot already installed
+
+$ which chroot
+
+	no output = no chroot
+
+$ sudo apt update
+$ sudo apt upgrade -y
+
+Install debootstrap 
+
+$ sudo apt install debootstrap -y 
+
+Create a new directory
+
+$ sudo mkdir -p /mnt/chroot
+
+after the directory is created, download and install the new system files
+	using debootstrap
+
+$ sudo debootstrap stable /mnt/chroot http://deb.debian.org/debian
+
+mount the newly created directory with the host pro system in order to 
+	access its hardware
+
+$ sudo mount -t proc proc /mnt/chroot/proc && sudo mount -t devpts devpts /mnt/chroot/dev/pts
+
+Enter the Chroot
+
+$ sudo chroot /mnt/chroot
+
+configure the chroot once inside
+
+# apt install locales 
+
+after the install re configure the locales 
+
+# dpkg-reconfigure locales 
+
+install SSH on chroot
+
+# apt install ssh -y 
+
+# nvim /etc/ssh/sshd_config
+
+uncomment the Port 2222 line 
+
+and PermitRootLogin yes
+
+save the file and exit, restart with 
+
+# /etc/init.d/ssh restart
+
+# exit
+
+now log in with the following 
+
+$ ssh username@localhost -p 2222
+
+

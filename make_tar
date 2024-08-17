@@ -1,0 +1,45 @@
+
+
+
+=========================================
+
+Make .tar
+
+=========================================
+
+
+making a .tar from learn linux TV
+
+copy entire etc/ folder to current dir
+
+$ sudo cp -r /etc . 
+
+	- copy recursively /dir current foler
+
+check to see its in their 
+
+$ ls
+
+then set ownership to full you 
+
+	stay in the parent dir
+
+$ sudo chown bobbie:bobbie -R etc 
+
+	- change ownership bobbie: recursively for etc 
+		note dont use / at the end of etc
+
+create .tar 
+
+$ tar -cf etc_backup.tar etc
+
+check contents 
+
+$ tar -tf etc_backup.tar 
+
+you could even pipe the word count and line count as well
+
+$ tar -tf etc_backup.tar | wc -l
+
+
+

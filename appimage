@@ -1,0 +1,32 @@
+
+=======================================
+
+Run an app image
+
+=======================================
+
+App images dont install the app right out 
+They install the .appimage and you have to 
+give it permission to be executable. 
+
+$ mkdir application_name
+
+$ cd application_name 
+
+Download appimage, mv to application_name dir
+
+Then in application_name dir 
+
+$ chmod u+x [appimage file]
+
+to change the permissions to be executable. 
+
+Run the app with 
+
+./appname.appimage
+
+or you should be able to click it to launch it if in file exploer
+
+=end=
+
+

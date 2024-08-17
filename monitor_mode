@@ -1,0 +1,36 @@
+
+
+
+============================================
+
+Monitor mode 
+
+============================================
+wlx00c0cab5e03d
+install airmon-ng and aircrack-ng and set interface to monitor mode and up 
+
+$ sudo apt install airmon-ng && aircrack-ng
+------see wifi_driver.txt
+
+
+$ airmon-ng check 
+
+then 
+
+$ airmon-ng check kill
+
+$ airmon-ng start wlan0
+
+
+after 
+
+$ airmon-ng [interface] stop
+
+$ service NetworkManager start
+
+$ service wpa_supplicant start
+
+
+
+
+

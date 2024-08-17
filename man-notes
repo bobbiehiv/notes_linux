@@ -1,0 +1,31 @@
+
+===============================
+
+man notes
+
+===============================
+
+Manual pages
+
+$ man -k keyword
+
+search commands by keyword
+
+man sections and meanings
+
+section 		description
+
+1			user commands 
+2 			kernal system calls 
+3			high level unix programing library docs
+4			device interface and driver info
+5 			file descriptions
+6 			games
+7			files formats conventions and encodings
+8 			system commands and server
+
+you can insert the section number to call to that seciton 
+
+$ man 5 passwd
+
+

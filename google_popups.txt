@@ -1,0 +1,19 @@
+
+=================================
+
+To disable google log in pop ups
+
+=================================
+
+First install Ublock origin 
+
+Find Ublock prefrences > My Filters
+
+add this filter
+
+accounts.google.com/gsi/*
+
+save and exit
+
+
+

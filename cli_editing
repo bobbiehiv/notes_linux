@@ -1,0 +1,20 @@
+
+
+================================
+
+CLi editing shortcuts
+
+================================
+
+ctrl-b		move the cursor left
+ctrl-f 		move the cursor right
+ctrl-p		view the previous command
+ctrl-n		view the next command
+ctrl-a		move to start
+ctrl-e		move to end
+ctrl-w		erase preceding word
+ctrl-u		erase cursor to beginging of line 
+ctrl-k		erase cursor to end of line
+ctrl-y 		paste erased text
+
+

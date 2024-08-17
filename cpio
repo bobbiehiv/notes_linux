@@ -1,0 +1,72 @@
+
+
+======================================================
+
+cpio
+
+=====================================================
+
+cpio stand for copy in, copy out. used to copy files 
+to and from archives 
+
+Copy out mode, copy files named to the archive
+
+$ cpio -o < names > archive
+
+Copy in mode, extract files from the archive 
+
+$ cpio -i < archive 
+
+Copy pass mode, copy files named in list to dest dir
+
+$ cpio -p dest/dir/ < namelist
+
+	Options 
+
+-i	extract 
+-o	create the archive 
+-p	passthrough
+-t	print all the inputs present
+
+Operation modifiers valid in any Mode:
+
+    -B: Changes the I/O block size to 5120 bytes.
+    -c: Use the old portable (ASCII) archive format.
+    -C, –io-size=NUMBER: Set the I/O block size to the given particular NUMBER of bytes.
+    -D, –directory=DIR: Changes to Directory DIR.
+    -H, –format=FORMAT: Use given arc.
+    -v, –verbose: List the files processed in a particular task.
+    -V, –dot: Print “.” for each file processed in a particular task.
+    -W, –warning=FLAG: Control warning display. Currently FLAG is one of ‘none‘, ‘truncate‘, ‘all‘.
+
+Examples
+
+$ cpio -ov < name-list > archive
+
+to create use
+
+$ ls | cpio -ov > ~/backups/onespot/compress.cpio
+
+to extract use
+
+$ cpio -iv < archive
+
+to create a tar archive using cpio
+
+$ cpio -ov -H tar > archive
+
+to extract tar archive using cpio 
+
+$ cpio -iv -F < archive
+
+to create a cpio archive with specifi files 
+
+$ find . -iname "*.txt" | cpio -ov > archive
+
+To create a tar with specific files 
+
+$ find . -iname "*.txt" | cpio -ov -H tar > archive
+
+to ony view tar archive file using cpio 
+
+$ cpio -it -F < archive

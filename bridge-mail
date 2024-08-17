@@ -1,0 +1,29 @@
+
+
+
+====================================
+
+Set up Bridged mail box
+
+====================================
+
+install thunderbird
+
+Hamburger > add existing account
+
+Name: What youll be seen as 
+
+Email: youremail@email.com
+
+Bridge password: 
+
+To get the bridge password you will have to download proton bridge app
+
+Go to proper dir
+
+$ wget https://proton.me/download/bridge/protonmail-bridge_3.8.2-1_amd64.deb
+
+$ sudo apt install ./protonmail-bridge_3.8.2-1_amd64.deb
+
+- after proton bridge is installed, grab the password and add it to thunderbird
+

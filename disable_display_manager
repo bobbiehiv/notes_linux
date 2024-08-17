@@ -1,0 +1,15 @@
+
+
+================================
+
+Disable display manager
+
+===============================
+
+$systemctl disable ligthdm.service 
+
+# OR 
+
+$ systemctl get-default
+
+$ systemctl set-default multi-user.target

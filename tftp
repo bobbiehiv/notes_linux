@@ -1,0 +1,31 @@
+
+=========================
+
+TFTP server 
+
+=========================
+
+$ sudo apt-get install tftp-hpa
+
+$ cd /etc/defaul/tftp-hpa config file 
+
+- set the base configs 
+
+ex "/home/bobbie/tftp"
+
+then 
+
+$ tftp [servername] get file.name
+
+get 	download
+put	upload
+status	show status
+-v 	turn on verbose
+-i	specify an image
+
+$ tftp [Serverip] from inside the folder you want to store it
+
+# might have to turn windows features on or off 
+
+# allow thru fire wall 
+

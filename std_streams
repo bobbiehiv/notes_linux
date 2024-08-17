@@ -1,0 +1,45 @@
+
+
+====================================
+
+Standard Streams
+
+====================================
+
+stdin 		Standard input 
+
+stdout	 =1	Standard ouput
+
+stderr   =2	Standard error  
+
+$ sudo apt update
+$ echo $?
+0
+
+prints in binary either 0 or 1.. anyhting
+not 0 is a error
+
+use the stdin out and error to split results 
+
+$ find /etc -type f 1> ~/results.txt 2> ~/errors.txt
+
+- in the above the 1 is unneeded because it is assumed
+	but it points all of the outputs to results.txt
+
+- also the 2 points all the errors that would output
+	to the error.txt
+
+---note this will overwrite the results file if it exists
+
+	to avoid use >> not > 
+		which will append it to the end
+
+----also -type f denotes its a regular file
+
+	so you are searching for all the files in /etc
+
+- you may also send the stdout and stderr to the same place 
+
+$ find /etc -type f 2>&1
+
+

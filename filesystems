@@ -1,0 +1,158 @@
+
+
+======================================================================
+
+Filesystems
+
+======================================================================
+
+Types 
+
+The fourth extended file systems (ext4) - the current iteration native to linux 
+	expanded from ext 2, and 3 
+
+Btrfs or B-tree filesystem (btrfs) - newer filesystem native to linux designed 
+	to scale beyong ext4 
+
+FAT filesystems (msdos, vfat, exfat) pertain to microsoft systems 
+	under 4g = fat and over 4g = exfat 
+
+XFS - is a high performance filesystem used by defualt by some distros like redhat
+
+HFS+ - is an apple standard 
+
+ISO 9660 - is a CD-rom standard 
+
+=======================================
+Creating a filesystem
+=======================================
+
+use mkfs to create files systems 
+
+$ mkfs -t ext4 /dev/sda2
+
+	create an ext4 partition on /dev/sda2
+
+	mkfs automatically determines the number of blocks and sets defualts 
+		dont change them (mostly)
+
+			creating a filesystem over and old filesystem will overwirte
+
+========================================
+mounting
+========================================
+
+the process of attaching a filesystem to a running system is called mounting
+when the system boots the kernel reads some configuration data and mounts root(/)
+
+know the following 
+
+	the filesystems device, location or idenifier 
+	the filesystem type 
+	the mount point - the place is the current systems dir hierarchy where the 
+		filesystem will be attached 
+			the mount point can be anywhere
+Run 
+$ mount 
+
+each line corresponds to one currently mounted filesystem 
+
+Output will be 
+
+	the device name 
+	the word on 
+	the mount point
+	the word type
+	the filesystem type 
+	mount options 
+
+to mount a filesystem manually use the mount command 
+
+# mount -t type device mountpoint
+
+ex 
+
+# mount -t ext4 /dev/sdf2 /home/extra
+
+	mounts the fourth extened filesystems found on sdf2 on /home/extra
+
+to unmount or detatch use 
+
+# unmount mountpoint
+
+		* use /mnt for testing 
+
+=================================================
+UUID
+=================================================
+
+because device names can change depending on the order the kernel sees them 
+
+use UUIDS 
+
+to view a list of all the UUIDS and corresponding filesystems use 
+
+$ blkid
+
+	use the UUID found there to mount the filesystem on the mount point
+
+	ususaly you wont do it like that tho 
+
+=================================================
+Mount options for filesystems
+=================================================
+
+Options fall into two catagories 
+
+General and filesystem specific 
+
+to acitivate filesystem options use the -o switch for example 
+
+$  -o remount,rw
+
+	remounts a filesystem already in readonly to readwrite 
+
+ Some options for general filesystem options 
+
+ -r   mounts the filesystem in read-only mode 
+ -n   ensures that mount doesnt try to update the system runtime mount database 
+ -t   specifies the filesystem type
+
+ Long Options 
+
+ to use on the command line with mount, start with -o followed by the right keywords 
+ 	seperated by commas, example
+
+$ mount -t vfat /dev/sda1 /dos -o ro, uid=1000
+
+	ro and uid=1000 are the long options
+	ro = read only just like -r 
+	uid=1000 = treat all files as if user 1000 is the owner
+
+Useful long options 
+
+	exec, noexec = enables or disables execution of programs 
+	suid, nosuid = enables or disable setuid programs
+	ro 	     = read only mode 
+	rw	     = read-write mode 
+
+========================================================
+/etc/fstab
+========================================================
+
+a perminant list of filesystems and options in plain text 
+
+list of what is listed in the file 
+
+UUID or device; 
+the mount point; 
+the filesystem type;
+options;    long options seperate by commas
+back up info used by the dump cmd; obsolite command (set to 0)
+and filesystem integrity test order; to ensure fsck always runs on the root first 	
+		set to 1 for the root filesystem 
+		and 2 for any other locally atatched filesystem
+
+
+
+

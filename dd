@@ -1,0 +1,41 @@
+
+
+====================================================
+
+dd
+
+====================================================
+
+or disk dump read and/or writes to and from files 
+
+used to do backups and img backups 
+
+some examples of dd
+
+- back up an entire hardisk
+
+# dd if=/dev/sda of=/dev/sdb
+	if = input file 
+	of = output file 
+will fail with any errors, however if you use conv=noerror then itll 
+	keep copying, and sync uses syncronised in out  
+
+# dd if=/dev/sda or=/dev/sdb conv=noerror, sync
+
+-- to back up a partition 
+
+# dd if=/dev.hda1 of=~/partition.img
+
+--- create an image of a harddisk
+
+# dd if=/dev/hda of=~/hdadisk.img
+
+---- to restore the image use 
+
+# dd if=hdadisk.img of=/dev/hdb
+
+----- to create a cd rom back up 
+
+# dd if=/dev/cdrom of=tgsservice.iso bs=2048
+
+

@@ -1,0 +1,20 @@
+
+
+==================================================
+
+symbolic links 
+
+=================================================
+
+It is simply a file that points to another file 
+
+like a windows shortcut 
+
+$ ln -s target linkname
+
+	target = the path 
+	linkname = the linkname 
+	-s means symbolic link 
+
+** if used make sure in proper order and dont forget -s
+	

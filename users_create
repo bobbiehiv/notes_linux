@@ -1,0 +1,138 @@
+
+
+
+=======================================================
+
+Creating users
+
+=======================================================
+
+use the useradd command 
+
+$ useradd [options] username 
+
+-- creates a new users according to the options in the command
+	and the default values in /etc/default/useradd
+
+-- useadd also read the content o the /etc/login.defs file 
+	this file contains the config for the shadow passwod suite, 
+	such as the password exp policy, range of userids, and more
+
+creating a new user
+
+$ sudo useradd bobbie
+	creates a new user as specified in /etc/defaults/useradd
+	creates an entry in /etc/passwd;shadow;group;gshadow
+
+verify with 
+
+$ sudo id bobbie
+
+Create password
+
+$ sudo passwd bobbie
+
+==================================================
+
+Create a new user and home directory, use -m (--create-home)
+
+$ sudo useradd -m bobbie
+
+	user will have full rights in their dir
+
+===================================================
+
+Create a user with a specifi UID 
+
+$ sudo useradd -u 1500 bobbie
+
+$ id -u bobbie
+	to check 
+
+====================================================
+
+Creating a user with a specific group ID use -g
+
+specify the group name or GID (group ID) 
+
+$ sudo useradd -g users bobbie
+
+$ id -gn bobbie 
+
+	check group
+
+=======================================================
+
+creating a user and assign multiple groups 
+
+use the -G option to specify a list of suplimentary groups 
+
+$ sudo useradd  -g users -G wheel,docker bobbie
+
+$ id bobbie
+
+========================================================
+
+Creating a user with a specific log in shell 
+
+- When a new user is created its login shell is set to the one specified 
+	in /etc/default/useradd
+	use -s to specifiy the shell to something other than default
+
+$ sudo useradd -s /user/bin/bash/zsh bobbie
+	
+$ grep bobbie /etc/passwd
+
+	check it 
+
+=======================================================
+
+Create a new user with a custom comment 
+
+use the -c to comment 
+
+$ sudo useradd -c "test account" bobbie
+
+$ grep bobbie /etc/passwd
+
+=======================================================
+
+Create a user with an expiry date 
+
+use the -e option with the yyyy-mm-dd format 
+
+$ sudo useradd -e 2025-01-22 bobbie
+
+use the comand chage to verify 
+
+$ sudo chage -l bobbie
+
+======================================================
+
+Creating a system user 
+
+Use the -r option 
+
+$ sudo useradd -r bobbie
+
+======================================================
+
+changing the useradd defaults 
+
+use the -D to view a change the default 
+
+$ useradd -D 
+
+	prints defaults 
+
+to change certian perameters to you specify the option then the replacement 
+
+to change the shell to bin/bash from SHELL=Bin/sh 
+
+$ sudo useradd -D -s /bin/bash
+
+Verfiy with the following 
+
+$ sudo useradd -D | grep -i shell
+
+
