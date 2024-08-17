@@ -1,0 +1,85 @@
+
+
+=====================================
+
+adding to repo
+
+=====================================
+
+Set your name globally for all repos on Computer
+
+$ git config --global user.name "USERNAME"
+
+Verify name set
+
+$ git config --global user.name
+
+	lose the --global for just dirs on another pc
+
+do the same for email with user.email insted of .name
+
+Create a repo at github.com 
+
+hold on to the link it creates
+
+ https://github.com/bobbiehiv/notes_linux.git
+
+on your local macing navigate to the dir you want to sync
+
+run 
+
+$ git init
+	intializes and orginzes the dir for use as repo
+
+add a README.md
+
+$ touch README.md
+$ nano README.md
+	make your README
+
+tell Git which files to add 
+
+$ git add .
+
+create a commit with the description "first set"
+
+$ git commit -m "first set"
+
+Check with 
+
+$ git status
+
+Now set the main branch 
+
+$ git branch -M main 
+
+connect the local repo to the repo at github 
+
+$ git remote add origin https://github.com/bobbiehiv/notes_linux.git 
+
+Then its time to send the files to github
+
+$ git push -u origin main
+
+-- The above command will not work with out generating an acess token
+
+	Go to your github profile 
+	click the picture icon on the right hand side 
+	Select "settings"
+	Scroll down to "devolper settings" 
+	Create new Personal access token
+
+---- you may want to also update and push files to git hub 
+
+While in dir 
+
+$ git add .
+
+$ git status 
+	to see the changes	
+
+$ git commit -m "some changes"
+
+$ git remote add origin [repos url]
+
+$ git push -u origin master 
