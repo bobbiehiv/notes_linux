@@ -1,8 +1,6 @@
 
 =========================
-
 TFTP server 
-
 =========================
 
 $ sudo apt-get install tftp-hpa

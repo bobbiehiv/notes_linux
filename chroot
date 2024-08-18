@@ -1,8 +1,6 @@
 
 ====================================
-
 Making a Chroot in Debian 
-
 =====================================
 
 first check to see if you have a chroot already installed

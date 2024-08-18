@@ -1,10 +1,6 @@
 
-
-
 ==========================
-
 Moving Files 
-
 ==========================
 
 mv -t [destinaviton_path] file1 file2

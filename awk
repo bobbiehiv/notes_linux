@@ -1,8 +1,6 @@
 
 ======================================================
-
 AWK
-
 ======================================================
 
 awk is used to filter a manipulate output form other programs 

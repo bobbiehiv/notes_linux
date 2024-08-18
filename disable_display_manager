@@ -1,9 +1,6 @@
 
-
 ================================
-
 Disable display manager
-
 ===============================
 
 $systemctl disable ligthdm.service 
