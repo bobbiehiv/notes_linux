@@ -1,0 +1,42 @@
+=========
+commands 
+=========
+
+to get infor about the linux system you are running 
+
+$ uname -a 
+
+Use apropos to find man pages of commands 
+
+$ apropos kernal 
+
+	finds commands related to kernel (like uname)
+
+get basic data about a command use type
+
+$ type uname cp kill which
+
+	returns infor for all four commands 
+
+	if a commands "is hashed" it just has been used recently 
+
+	* clean up the hash table $ hash -d
+
+Which will show the absolute path of a command
+
+$ which uname
+	/bin/uname
+
+-----------------------
+recover command history
+-----------------------
+
+$ history
+	returns the most recent commands
+
+$ history | grep bash_history 
+	returns the most recent commands piped for bash history
+
+.bash_history is in home dir, 
+	conatins all recent commands (only once the session is ended)
+

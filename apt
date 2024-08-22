@@ -1,0 +1,200 @@
+=========================================================
+APT
+=========================================================
+
+the advanced package tool 
+	provides more features than dpkg
+
+apt is not a replacement for dpkg, its more of a front end
+	streamlining and filling in gaps.
+
+apt works with software repos, which contain the packages 
+available to install 
+
+some utilities 
+
+apt-get
+	used to download upgrade or remove
+apt-cache
+	used to preform operations like searches in the 	
+	package index
+apt-file
+	used for searching for files inside packages
+
+apt 
+	is also used combining all most common utils of 
+	apt-get and apt-cache
+
+always update before installing so you get the latest of 
+what youre getting 
+
+# apt-get update (or just apt)
+
+Then install 
+
+# apt-get install PACKAGE
+
+or remove 
+
+# apt-get remove PACKAGE
+
+Apt will automatically remove or resolve package 
+dependancies, but it will also show you and ask to 
+continue
+
+to remove the corresponding config files for a package use
+purge instead of remove. or use remove with --purge
+
+# apt-get pugre PACKAGE 
+# apt-get remove --purge PACKAGE
+
+--------------------------
+fixing broken dependencies
+--------------------------
+
+Broken dependancies are when one or more of the installed packages 
+depend on other pacages that havent been installed yet, or have been 
+removed
+
+to fix this issue 
+
+$ apt-get install -f 
+	tries to fix the broken packages by installing missing 
+	dependancies
+
+----------
+upgrade
+----------
+
+use apt to upgrade any installed packages to the latest versions 
+available from the repos
+
+$ apt-get upgrade
+$ apt-get upgrade PACKAGE
+
+------------
+local cache
+------------
+
+When you install or update a package the .deb file is downloaded 
+to a local cache directory before the package is installed.
+by default it is /var/cache/apt/archives
+partially downloaded ones are in /var/cache/apt/archives/partial
+
+to reclaim space and empty cache use 
+
+$ apt-get clean
+	will remove contents of above directories
+
+apt-cache can be used to perform operations on the package index
+such as searching for a specific package or listing which packages 
+contain a file
+
+to conduct a search use
+
+$ apt-cache search PATTERN
+	lists every instance of that pattern in its name description
+	or files 
+
+Use the show command to dig deeper into entrys 
+
+$ apt-cache show PACKAGE
+
+		* you can use regular expresions to get more granular 
+		  information
+		you can also use $ apt search instead
+
+-----------------
+the sources list
+-----------------
+
+apt uses a list of sources to know where to get packages from
+the list is stored in the file sources.list located in the 
+/etc.apt directory
+	this file can be edited direcly
+
+a line will look like the following 
+
+deb http://us.archive.ubuntu.com/ubuntu/ disco main restricted universe multiverse
+
+the syntax is apchive type, url, distrobution and one or more components
+
+	archive type 
+		a repo may contain packages with ready to run softwar
+		bin's type deb. or with the source code to this software
+		the example above provides binary packages
+	URL
+		the url for the repo
+	Distribution
+		the name or code name for the distrobution
+	components 
+		each compnents represents a set of packages
+		components may be different on different distros
+	   Ubuntu  style ones are 
+
+	main  
+		contains officially supported, open-source packages
+	restricted 
+		contains officially supported, closed-source software, 
+		like device drivers for graphic cards
+	universe
+		contains community maintained open-source software
+	Multiverse
+		contains unsupported, closed-source or 
+		patent-encumbered software
+
+	Debian ones are 
+	
+	main
+		consists of packages compliant with the Debian Free 
+		Software Guidelines (DFSG), which donot rely on software
+		outside this area to operate. Packages included here are
+		considered to be part of the Debian distribution 
+	contrib
+		contains DFSG-compliant packages, but which depend on 
+		other packages that are not in main
+	non-free
+		contains packages that are not compliant with the DFSG
+	security
+		Security updates
+	backports
+		contains more recent versions of packages that are in main
+	
+		learn more 
+		https://www.debian.org/social_contract#guidelines
+
+to add a new repo to get packages from to can add a line to the end 
+of sources.list
+	save the file and reload the index with apt-get update
+	after that you can use apt install to get packages from the 
+	repo
+
+you can also add file with addtional repos to be used by apt 
+	/etc/apt/sources.list.d
+	use the .list extention
+
+----------------------------------
+listing contents and finding files
+----------------------------------
+
+apt-file cab be used to list or find the contents in a package, or 
+find a package that contains a certian file
+
+install it first 
+
+$ apt-get install apt-file
+
+then update the package cache used for apt-file
+
+# apt-file update
+
+list the contents with list 
+
+# apt-file list PACKAGE
+
+search which packages use which files
+
+# apt-file search FIlename
+
+** apt-file search will search uninstalled packages, unlike 
+	dpkg-query 

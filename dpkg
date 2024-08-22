@@ -1,0 +1,80 @@
+=========================================================
+dpkg
+=========================================================
+
+The debian package tool
+
+install .deb packages as so
+
+# dpkg -i PACKAGENAME.deb
+
+If a previous version exist, it will be upgraded to the 
+new version
+
+------------
+Dependencies
+------------
+
+dpkg will check if the nessacary dependancies are installed
+on the system, and will fail if they are not
+
+Sometimes thy will list what packages are missing, 
+but it cant solve depeancies by itself
+	you have to find the .deb packages and install them
+
+---------------
+remove packages
+---------------
+
+to remove packages use
+
+$ dpkg -r PACKAGENAME.deb
+
+-r also runs a dependancy check
+	packages cant be removed unless every other 
+	pacakge that depends on it is also removed
+
+if you pass multiple package names they will all be 
+removed at once
+
+	when a packae is removed the corresponding files 
+	are left, to remove everything assiosciated 
+	use -P instead of -r
+
+--------------------------
+listing installed packages
+--------------------------
+
+you can force install with --force
+
+to get info about the .deb package
+
+# dpkg -I FILename.deb
+
+get a list of every package installed on your system.
+
+# dpkg --get-selections 
+
+or a list of every file installed by a specific pacakage
+	use
+
+# dpkg -L PACKaGE
+
+find out which pacakge own a file
+
+# dpkg-query -S /path/to/the/file
+
+reconfiguring installed packages to defaults
+	backs up the old config
+	unpack the new ones 
+	and run the post install script provided 
+	by the package
+
+# dpkg-reconfigure PACKAGE
+
+
+
+
+
+
+

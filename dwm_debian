@@ -1,0 +1,48 @@
+
+==================================================
+dwm debian
+==================================================
+
+download dwm, 
+	also st a terminal emulator 
+	and dmenu a program launcher
+	
+$ git clone https://git.suckless.org/dwm
+
+navigate to config.def.h in dir
+
+Change "st" to alacritty or whatever term emulator
+ 
+static const char *termcmd[]  = { "st", NULL};
+
+Then in the same config file change the 
+
+# define MODKEY Mod1mask
+	change the 1 to 4
+
+esc; :wq
+
+other packages i had to install before i could 
+
+$ make clean install
+
+	$ sudo apt-get install libx11-dev
+
+	$ sudo apt install libxft-dev
+
+	$ sudo apt-get install libx11-dev xserver-xorg-dev xorg-dev
+
+then 
+
+$ touch ~/.xinitrc
+
+$ nvim .xinitrx
+
+add
+	exec dwm
+exec picom &
+exec nitrogen --restore &
+dwmblocks &
+xrandr --output Virtual-1 --mode 1920x1080 &
+exec dwm
+

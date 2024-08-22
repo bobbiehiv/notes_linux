@@ -1,0 +1,66 @@
+=================================
+Enviroment varibles 
+=================================
+
+to find enviroment varibles use the env command
+
+$ env
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+XDG_RUNTIME_DIR=/run/user/1000
+XAUTHORITY=/run/user/1000/gdm/Xauthority
+XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/game
+s:/snap/bin
+	(There'll be way more)
+
+Look at the PATH entry, this contains the directories where your shell
+and other Programs will look for other programs with out having to 
+specifiy a complete path 
+	this makes is so you can run a binary program from the other 
+	directories
+
+Use echo to print whatever you tell it 
+
+$ echo "Hey stupid"
+
+you can feed it the name of an enviroment varible as well
+	tell echo that it is a varible by prefacing with $ 
+
+$ echo $PATH
+	will print everything that $PATH contains
+
+use the = to create your own varibles
+
+$ myvar=gayguy
+
+$ echo $myvar
+  gayguy
+	this creates a varible that is only locally available
+
+$ export myvar 
+	passes the varible to the subsequent child processes
+
+loose all the varibles by closing all sessions or use
+
+$ unset myvar
+
+using just set is similar to using env 
+	however set will output all varibles and functions
+
+$ env | grep mynewvar
+
+$ set | grep mynewvar
+  maynewvar=goodbye
+
+------------------
+special characters
+------------------
+
+$ touch my new file
+	creates 3 seperate files
+
+$ touch "my new file"
+	creates 1 with spaces in qoutes 
+
+$ touch my\ new\ file
+	does the same thing by escaping the space

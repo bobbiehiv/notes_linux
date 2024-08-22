@@ -1,0 +1,45 @@
+=======================================================
+Up start 
+=======================================================
+
+located in the dir /etc/init/
+
+# initctl list   
+	list system services 
+
+every upstart action has its own independent command
+
+# start tty6
+	start the 6th virtual terminal
+
+# status tty6 
+	shows status 
+
+# stop tty 6 
+	stops, duh
+
+most switched to systemd
+
+===========================================
+Shutdown and restart 
+===========================================
+
+when shut down is executed all processes receive 
+
+SIGTERM and SIGKILL
+
+with not - h or -r its alternates to runlevel 1 
+
+$ shutdown [option] time [message]
+
+	only time is required
+		formats [hh:mm; +m; now; +0]
+
+message is a warning sent to all users. 
+
+if users are added to the /etc/shutdown.allow file they will be 
+the only ones able to restart with ctrl-alt- del
+
+
+
+

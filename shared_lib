@@ -1,0 +1,97 @@
+
+=======================================================
+Shared Libraries
+=======================================================
+
+to build a executable from code, two steps are needed 
+
+the complier turns the source code into machine code that is 
+	stored in so-called object files
+
+Then the linker compbines the object files and links them to
+	libraries in order to generate the final executable file
+
+linking can be done staticly or dynamically 
+
+Static Libraries 
+
+	are merged with the program at link time
+	a copy of the code is embedded in the program and becomes 
+	part of it. 
+	- thus the program has no dependencies at run time 
+	- advantagoues but heavier in general
+
+Shared or dynamic libraries
+
+	in shared libraries the linker simply takes care that the 
+	program references libraries correctly 
+	the linker doesnt copy any libraries into the program file 
+
+the name of a shared library also called a soname is made as follows
+
+	library name usually prefixed with lib
+	so (shared object)
+	version number of the library
+		---Static libraries however end in .a
+
+**In Windows Shared Librabries are called DLL
+		- Dynamic Linked Libraries
+
+=======================================================
+Config of shared library paths 
+=======================================================
+
+the refernces contatined in dynamically linked programs are 
+resolved by the dynamic linker.
+	- ld.so or ld-linux.so
+
+the program runs, the dynamic linker searches for libraries
+in the directories specified by the   Library path
+	the library path is in the /etc/ dir 
+	namely in /etc/ld/so.conf or 
+	/etc/ld.so.conf.d 
+
+	normally /etc/ld.so.conf contatains a single 
+	include line for the .etc/ld.so.conf.d/*conf files
+
+	*.conf files must include the absolute paths to the 
+	shared library directories
+
+$ ldconfig reads files, creates symbolic links and updates
+	cache info 
+	Run ldconfig whenever you add or update config files!
+	Helpful options
+	-v  Verbose
+	-p  Print Cache  
+	
+LD_LIBRARY_PATH 
+	Enviroment varible used to add new paths for 
+	shared libraries temorarialy 
+to add path 
+	$ LD_LIBRARY_PATH=/usr/your/pathlib
+	Check value 
+	$ echo $LD_LIBRARY_PATH
+to remove 
+	$ unset LD_LIBRARY_PATH
+to export in current shell sesion and all children
+	$ export LD_LIBRARY_PATH=/usr/your/pathlib
+
+======================================================
+Searching for dependencies of exe's
+======================================================
+
+use the ldd command follwoed by the absolute path 
+to the program
+
+$ ldd /usr/bin/git
+
+or use to search for dependanices of a shared object
+
+$ ldd /lib.x86_64-linux-gnu/libc.so.6
+
+use the -u (--unused) option to print unused dependanices
+
+$ ldd -u /usr/bin/git
+
+
+Page 89

@@ -1,0 +1,62 @@
+
+======================================================
+beef
+======================================================
+
+to install beef 
+
+$ sudo apt install beef-xss
+
+or to installl from source 
+
+you first need ruby
+
+$ sudo apt-add-repository -y ppa:brightbox/ruby-ng
+
+$ gem install bundler
+
+optain the lastest code 
+
+$ wget https://github.com/beefproject/beef/archive/master.zip
+
+or just clone it
+
+$ git clone https://github.com/beefproject/beef
+
+instal it 
+
+$ ./install 
+
+start beef 
+
+$ ./beef
+
+-- you will probably have to change your username and 
+	password to do that in the beef dir 
+
+$ nano config.yaml
+
+then update the beef default credentials to your new ones
+
+after beef server is started 
+	
+navigate to the UI url that is provides 
+	probably 127.0.0.1:3000/ui/panel
+
+sign in and grab the advanced verison of the link 
+to hook your browsers
+
+============================================================
+a bit more
+============================================================
+
+make sure apache2 is installed 
+
+$ sudo apt install apache2 
+
+navigate to 
+
+$ cd /var/www/html
+
+to be continued 
+

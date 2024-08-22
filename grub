@@ -1,0 +1,77 @@
+=======================================================
+Booting from grub2 shell 
+=======================================================
+
+Find the boot partition
+
+grub> ls 
+(proc) (hd0) (hdo,msdos1)
+
+There is only one partition 
+
+grub> ls (hdo,msdos1)/
+	-shows the contents of partition
+	- look for a kernel (vmlinuz) and initrd (initrd.img)
+		if not check /boot/ in partition
+
+set the boot partition
+
+grub> set root=(hd0,msdos1)
+
+load the linux kernel with command followed by path to the kernel
+and root= option
+
+grub> linux /vmlinuz root=/dev/sda1
+
+Load the intial ram disk
+
+grub> initrd /initrd.img
+
+now boot up with 
+
+grub> boot
+
+for grub resue the system is the same except before you 
+set the boot partition do the following
+
+use the set prefix= followed by path to the dir contatin grub2 files
+
+grub resue> set prefix=(hd0,msdos1)/boot/grub
+
+now load the modules normal and linux with insmod
+
+grub rescue> insmod normal
+grub rescue> insmod linux
+
+Then continue on to set root=
+
+
+===================================================================
+menu options
+===================================================================
+
+menu entries and settings are stored in the file 
+	/boot/grub/menu.lst
+
+example
+
+	# this line is a comment
+	title The Linux distro
+	root (hd0,0)
+	kernel /vmlinuz root=/dev/hda1
+
+The first line is only a comment 
+the real first line is the title of the os
+the second is where the boot partition is 
+the third specifies the full path to the kernel image
+
+===================================================================
+Chain loading
+===================================================================
+
+# Load Windows
+title Windows XP
+root (hd0,1)
+makeactive
+chainload +1
+boot

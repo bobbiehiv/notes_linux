@@ -1,0 +1,13 @@
+
+===========================================
+cordova
+===========================================
+
+first install npm
+
+$ sudo apt install npm 
+
+Then install cordova
+
+$ sudo npm install -g cordova
+

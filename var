@@ -1,0 +1,38 @@
+========================================================
+/var 
+========================================================
+
+varible data or files and directories the system must be 
+able to write to during operation. 
+
+includes 
+
+system logs in /var/log
+temp files in / var/tmp
+cached app data in /var/cache
+
+/var/www/html is the default direcory for the data files 
+for the apache web server
+/var/lib/mysql is the default location for database files 
+for mysql server 
+
+a good reason for putting /var in a seperate partition is 
+stablility 
+
+a program could write data to a /var file untill there is 
+no room on the drive at all
+
+keep /home /var /boot/efi or /boot under thier own 
+partitions
+
+Swap partition cant be mounted like others 
+must be set up with a utility called mkswap
+
+usually 2x the ampount of ram
+or 
+
+<2gb of ram 2x the amount of ram 
+2-8gb of ram equal to the amount of ram
+8-64gb of ram at least 4gb 
+> 64gb of ram at least 4gb
+
