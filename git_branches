@@ -1,0 +1,71 @@
+
+============================================
+git branches
+============================================
+
+go to dwm/ 
+
+$ cd dwm/
+
+$ git config user.email "bobbiehiv@gmail.com"
+
+$ git config user.name "bobbiehiv"
+
+$ make clean && rm -f config.h && git reset --hard origin/master
+
+$ git branch git checkout config
+
+$ vim config.def.h
+
+$ git add config.def.h
+
+$ git commit -m config
+
+$ git checkout master
+
+$ git merge config -m config
+
+$ sudo make clean install
+
+$ sudo reboot
+
+-------------
+install patch
+-------------
+
+$ cd dwm/
+
+$ make clean && rm -f config.h && git reset --hard origin/master
+
+$ git checkout master
+
+$ git branch fullgaps
+
+$ git checkout fullgaps
+
+$ git apply ~/path/fullgaps.diff
+	failed
+$ patch < ~/path/fullgaps.diff
+
+& vim dwm.c.rej 
+	copy paste lines with + to dwm.c
+
+$ git add dwm.c config.def.h
+
+$ git commit -m fullgaps
+
+Switch to master 
+
+$ git checkout master 
+
+$ git merege config -m config
+
+$ git merge fulgaps -m fullgaps
+
+$ make && sudo make clean install 
+
+
+
+
+
+

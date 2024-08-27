@@ -1,0 +1,71 @@
+
+====================================================
+dwm patches
+====================================================
+
+go to suckless.org and locate desired patch
+
+save link as
+
+-----
+
+cd into DWM repo folder 
+
+$ git branch config 
+
+$ git branch
+	config
+	master
+
+If Dwm dir exist in config branch 
+
+$ git checkout master 
+	switches to master branch
+
+$ git branch -D connfig
+
+$ make clean && rm -f config.h && git reset --hard origin/master
+
+$ git branch config 
+
+$ git checkout config
+
+$ ls
+
+	no dwm dir
+$ nvim config.def.h
+	make a change 
+
+$ git add config.def.h
+
+$ git commit -m config.def.h
+ 
+$ git merge config -m config
+
+$ make && sudo make clean install
+	
+-----------------------------
+patches
+-----------------------------
+
+clean out the master branch
+
+$ make clean && rm -f config.h && git reset --hard origin/master
+
+$ git branch [perta]g
+
+$ git checkout [patche]
+
+$ git apply location/of/[patche].diff
+
+-- if errors occur try patch -p1 < ~/location/of/patche.diff
+
+$ git add dwm.c
+
+$ git commit -m [patche]
+
+$ git merge config -m config 
+
+$ git merge [patche] -m [patche]
+
+$ make && sudo make clean install

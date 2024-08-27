@@ -1,0 +1,47 @@
+===========
+wildcards
+===========
+
+file globbing represent multiple filenames by using special 
+characters called wildcards
+
+use wildcards with cp, ls, and rm 
+
+Deletes all files in working dir
+
+$ rm * 
+
+list all files with names begining with l and followed by a
+	single character and ending with st
+
+$ ls l?st
+
+remove all directories whose name starts with a letter 
+
+$ rmdir [a-z]*
+
+There are three types of wildcards 
+
+* - represents zero one or more occurances of any character 
+? - represents a single occurance 
+[]- represents any occurance of the characters enclosed inside
+
+examples 
+
+$ find /home -name *.png
+$ ls lpic-*.txt
+$ cp -r animal/* forest
+$ rm *ate*
+
+$ ls l?st.txt 
+
+$ ls l[aef]st.txt
+	would match last.txt and lest.txt
+$ ls l[a-z]st.txt
+	is a range
+
+Try combining them 
+
+$ ls [plf]?st*
+	last.txt lest.txt list.txt past.txt
+

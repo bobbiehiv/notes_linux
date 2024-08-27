@@ -1,0 +1,237 @@
+===================================================
+redirection and pipes
+===================================================
+
+use cat to redirect standard input 
+	if you dont specify where cat will read from 
+	it will read what you type
+
+$ cat > mytextfile
+	this is a test 
+	you are gay
+
+$ cat mytextfile	
+	this is a test
+	you are gay
+
+the > tells cat to direct to mytextfile not std output
+
+$ cat mytextfile > mynewtextfile
+$ cat mynewtextfile
+	this is a test
+	i hope that cat is storing this to mytextfile
+
+	this copies my textfile to mynewtextfile
+	use diff to verifiy
+
+$ diff mynewtextfile mytextfile
+	(no output = no difference)
+
+now append the redirection operator
+
+$ echo 'this is a gayline' >> mynewtextfile
+$ diff mynewtextfile mytextfile
+	4d3
+	< this is my new gay line
+
+Now grep with pipes 
+
+$ cat mytextfile | grep this
+	prints lines with this
+$ cat mytextfile | grep -i this
+	prints lines with this not case sensitive
+
+--------------------
+passing text streams
+--------------------
+
+create a file called gay.txt containing a list of commands 
+
+$ touch gay.txt 
+
+$ cat gay.txt
+	bzcat
+	cat
+	cut
+	head
+	less
+	md5sum
+
+grep the lines containing cat
+
+$ cat gay.txt | grep cat
+
+Or 
+
+$ grep cat gay.txt
+	send text to stdout
+
+compress gay.txt with gzip
+
+$ gzip gay.txt
+$ ls 
+	gay.txt.gz
+
+use zcat to view the contents of the gzipped file
+
+$ zcat gay.txt.gz
+	bzcat
+	cat
+	cut
+	head
+	less
+	md5sum
+	
+-------------------
+view file in pager
+-------------------
+
+Since cat prints the file to stdout try to use the cat 
+/var/log/syslog
+
+$ sudo cat /var/log/syslog
+	fast output!
+	pipe it to less to make pages tho
+
+$ sudo less /var/log/syslog
+	
+use head or tail to read the first ten lines or the last 
+
+$ sudo head /var/log/syslog
+	pipe it thru n1 to number the lines 
+
+$ sudo head /var/log/syslog | n1
+
+Or try the word count command wc, with -1 to print the number
+	of lines 
+
+$ sudo head /var/log/syslog | wc -1
+
+use the -n option to view more or less lines 
+
+$ sudo head -n 5 /var/log/syslog 
+
+----
+sed
+----
+
+checkout files in gay.txt.gz that dont have cat in the name
+
+$ zcat gay.txt.gz | grep -v cat
+
+unzip gay.txt with gzip
+
+$ gunzip gay.txt.gz
+
+use sed to list only the lines containing cat 
+
+$ sed -n /cat/p < gay.txt
+
+the less than sign directs the contents of gay.txt into the 
+sed command, the word between //'s is the search word
+	the -n says produce no output, except for 
+	what p specifies 
+
+to run it with out the -n 
+
+$ sed /cat/d < gay.txt
+
+sed will print everything from the file EXcept what is in "//d" 
+
+sed is useful for replace or swaping strings 
+
+use the s option to swap out cat for dog in gay.txt 
+
+$ sed s/cat/dog/ < gay.txt
+
+you dont have to use < , the following will make a back up as well 
+
+$ sed -i.backup s/cat/dog/ gay.txt
+
+**if you dont use .backup you will rewrite origanal prior to 
+	modifications
+
+---------------
+data integrity
+---------------
+
+comparing checksums
+
+$ sha256sum gay.txt
+	prints checksum
+
+Create a file that contains that value use the sha256sum command
+
+$ sha256sum gay.txt > sha256.txt
+
+to verify the gay.txt file use the same command, -c and the file 
+
+$ sha256sum -c sha256.txt 
+	gay.txt: ok
+
+if anyhting changes it will fail, for instance 
+
+$ echo "stupid" >> gay.txt
+	run the check again 
+
+$ sha256sum -c sha256.txt 
+	gay.txt: FAILED
+
+---------------
+octal dump (od)
+---------------
+
+the octal dump is used for debugging appplications and files
+by itself the od command will just list a files contents in 
+	octal format
+
+$ od gay.txt
+
+0000000 075142 060543 005164 060543 005164 072543 005164 062550
+0000020 062141 066012 071545 005163 062155 071465 066565 067012
+0000040 005154 062157 070012 071541 062564 071412 062145 071412
+
+The first column of output is the byte offset for each line 
+the byte offset is 8 bits followed by 8 collumns, which contain the 
+octal value of that column
+
+Need to view in hexidecimenl? use -x 
+
+$ od -x gay.txt
+
+0000000 7a62 6163 0a74 6163 0a74 7563 0a74 6568
+
+You can also use the command to debug scripts 
+
+$ od -c gay.txt
+
+0000000 b z c a t \n c a t \n c u t \n h e
+
+View without offset info
+
+$ od -An -c gay.txt
+
+b z c a t \n c a t \n c u t \n h e
+
+notes 
+
+cat, bzcat, xzcat, zcat - view contents of siped type
+
+use sort to list alphabetically, reverse, or random
+
+$ sort
+
+use uniq to list a count matching strings
+
+$ uniq
+
+use  sha512sum sha256sum or md5sum
+
+for calculating the hashvalues
+
+
+page 196
+
+
+
+	

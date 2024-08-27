@@ -1,0 +1,307 @@
+#alacritty config file from https://alacritty.org/config-alacritty.html
+
+#Alacritty's configuration file uses the TOML format. 
+#The format's specification can be found at https://toml.io/en/v1.0.0.
+
+Will loook in the following for alacritty.toml
+
+$XDG_CONFIG_HOME/alacritty/alacritty.toml
+$XDG_CONFIG_HOME/alacritty.toml
+$HOME/.config/alacritty/alacritty.toml
+$HOME/.alacritty.toml
+
+#########
+#General
+#########
+
+root level config
+
+#import = ["<string>"]
+	#import additional strings with full or relative paths
+
+#shell = "<string>" | { program = "<string>", args = ["<string>",] }
+	# set shell.program to the path of your shell
+	# shell.args are passed as arguements to the shell
+
+#working_directory = "<string>" | "None"
+#Default: "None"
+	# directory the shell is started in
+	# default none or not used with default the WD parent dir
+
+#live_config_reload = true | false
+	#Live config reload (changes require restart)
+	#Default: true
+
+#####
+#ENV
+#####
+
+# use the [env] table
+
+#All key-value pairs in the [env] section will be added as 
+#environment variables for any process spawned by Alacritty, 
+#including its shell. Some entries may override variables set 
+#by alacritty itself.
+
+#Example:
+
+#[env]
+#WINIT_X11_SCALE_FACTOR = "1.0"
+
+########
+#Window
+########
+
+# use the [window] table
+
+#dimensions = { columns = <integer>, lines = <integer> }
+	# must be something other than 0 to take effect
+
+#position = "None" | { x = <integer>, y = <integer> }
+	# window startup position, if "None" window manager will handle
+
+#padding = { x = <integer>, y = <integer> }
+	# blank space around the the window in pixels scaled by DPI
+
+#decorations = "Full" | "None" | "Transparent" | "Buttonless"
+	#Full - borders and title bar
+	#None - Neither borders or title bar
+
+#opacity = <float>
+	#background opacity as a floating point number from 0.0 to 1.0
+
+#blur = true | false # (works on macOS/KDE Wayland)
+	# blur content behind transparent windows
+
+#startup_mode = "Windowed" | "Maximized" | "Fullscreen" 
+	#Windowed, maximized, or fullscreen on start up
+
+#title = "<string>"
+	# default: Alacritty
+
+#dynamic_title = true | false
+	# allow apps to change title Default: true
+
+#decorations_theme_variant = "Dark" | "Light" | "None"
+	# decorations theme, dark, light or none
+	# "None" to use the systems default
+
+###########
+#Scrolling  
+###########
+
+use the [scrolling] table
+
+#history = <integer>
+	# 0: will disable, max 10000
+
+#multiplier = <integer>
+	# number of lines scrolled for every scroll 
+	# default: 3
+
+######
+#Font
+######
+
+# use the [font] table
+
+#normal = { family = "<string>", style = "<string>" }
+	# Default: Linux/BSD: { family = "monospace", style = "Regular" }
+
+#bold = { family = "<string>", style = "<string>" }
+	# Default: {style = "Bold" }
+
+#italic = { family = "<string>", style = "<string>" }
+	# Default: { style = "Italic" }
+
+#bold_italic = { family = "<string>", style = "<string>" }
+	# Default: { style = "Bold Italic" }
+	
+	# if any of the above Family isnt specified it will default
+	# to normal
+ 
+#size = <float>
+	# font size in points defaul: 11.25
+
+#offset = { x = <integer>, y = <integer> }
+	# extra space around each character 
+	# y: the line and x: the letter (Default: 0,0)
+
+#glyph_offset = { x = <integer>, y = <integer> }
+	# x: moves to the right. y: moves up
+
+#builtin_box_drawing = true | false
+	# default true
+
+########
+#Colors
+########
+
+# use the [colors] table
+
+
+#Primary#
+	# use the [colors.primary] table
+	# for foreground, background and dim_foreground
+
+#foreground = "<string>"
+	# Default: "#d8d8d8"
+
+#background = "<string>"
+	# Default: "#181818"
+
+#dim_foreground = "<string>"
+	# if unset, defaults based on foreground
+	# Default: "#828482"
+
+#bright_foreground = "<string>"
+	# This color is only used when 
+	# draw_bold_text_with_bright_colors is true.
+	# Default: "None"
+
+=====
+
+#cursor = { text = "<string>", cursor = "<string>" }
+	# colors for the cursor
+
+#vi_mode_cursor = { text = "<string>", cursor = "<string>" }
+	# for when vi mode is active
+
+	# applies to cursor, vimode cursor, and search matches/focused
+	# use Hexidecimal colors [#ff00ff] or 
+	# cellForeground/CellBackground 
+	# Default: { text = "CellBackground", cursor = "CellForeground" }
+
+########
+#Search
+########
+
+# use the [colors.search] table
+
+#matches = { foreground = "<string>", background = "<string>" }
+	# Default: { foreground = "#181818", background = "#ac4242" }
+
+#focused_match = { foreground = "<string>", background = "<string>" }
+	# Default: { foreground = "#181818", background = "#f4bf75" }
+
+#######
+#hints
+#######
+
+# use the [colors.hints] table
+
+#start = { foreground = "<string>", background = "<string>" }
+	# First character in the hint label	
+	# Default: { foreground = "#181818", background = "#f4bf75" }
+
+#end = { foreground = "<string>", background = "<string>" }
+	# Default: { foreground = "#181818", background = "#ac4242" }
+
+#line_indicator = { foreground = "<string>", background = "<string>" }
+	# Default: { foreground = "None", background = "None" }
+
+#footer_bar = { foreground = "<string>", background = "<string>" }
+	# Default: { foreground = "#181818", background = "#d8d8d8" }
+
+#selection = { text = "<string>", background = "<string>" }
+	#Default: { text = "CellBackground", background = "CellForeground" }
+
+########
+#normal
+########
+
+# use the [colors.normal] table
+
+#black = "<string>"
+	# Default: "#181818"
+
+#red = "<string>"
+	#Default: "#ac4242"
+
+#green = "<string>"
+	#Default: "#90a959"
+
+#yellow = "<string>"
+	#Default: "#f4bf75"
+
+#blue = "<string>"
+	#Default: "#6a9fb5"
+
+#magenta = "<string>"
+	#Default: "#aa759f"
+
+#cyan = "<string>"
+	#Default: "#75b5aa"
+
+#white = "<string>"
+	#Default: "#d8d8d8"
+
+########
+#bright
+########
+
+# use the [colors.bright] table 
+
+#black = "<string>"
+	#Default: "#6b6b6b"
+
+#red = "<string>"
+	#Default: "#c55555"
+
+#green = "<string>"
+	#Default: "#aac474"
+
+#yellow = "<string>"
+	#Default: "#feca88"
+
+#blue = "<string>"
+	#Default: "#82b8c8"
+
+#magenta = "<string>"
+	#Default: "#c28cb8"
+
+#cyan = "<string>"
+	#Default: "#93d3c3"
+
+#white = "<string>"
+	#Default: "#f8f8f8"
+
+#####
+#dim
+#####
+
+# use the [colors.dim] table
+
+#black = "<string>"
+	#Default: "#0f0f0f"
+
+#red = "<string>"
+	#Default: "#712b2b"
+
+#green = "<string>"
+	#Default: "#5f6f3a"
+
+#yellow = "<string>"
+	#Default: "#a17e4d"
+
+#blue = "<string>"
+	#Default: "#456877"
+
+#magenta = "<string>"
+	#Default: "#704d68"
+
+#cyan = "<string>"
+	#Default: "#4d7770"
+
+#white = "<string>"
+	#Default: "#8e8e8e"
+
+#indexed_colors = [{ index = <integer>, color = "<string>" },]
+	# Default: []
+
+#transparent_background_colors = true | false
+	# Defaul: false	
+
+#draw_bold_text_with_bright_colors = true | false
+	# Default: false
+

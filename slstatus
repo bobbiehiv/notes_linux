@@ -1,0 +1,55 @@
+
+=======================================================
+slstaus
+=======================================================
+
+for slstatus dwm status bar config
+
+$ git clone https://git.suckless.org/slstatus
+
+$ cd slstatus
+
+$ sudo make 
+	inside dir 
+
+Run executable to verify functionallity 
+
+$ ./slstaus
+
+	[ctrl-c]
+
+$ nvim config.h 
+
+set functions into agrguments 
+
+static const struct arg args[] = {
+        /* function format          argument */
+        { datetime, "%s",           "%F %T" },
+};
+
+static const struct arg args[] = {
+        /* function format          argument */
+        { datetime, "%s",           "%F %T" },
+	{ battery_perc, "%s"		"BAT0"},
+};
+
+Error?:
+
+fopen '/sys/class/power_supply/(null)/capacity': No such file or directory
+
+	its attempting to look in that dir for you battery 
+
+$ ls /sys/class/power_supply/
+
+
+Find the correct battery and change it "BAT1"?
+
+after all changes are made
+
+sudo make, and run to check
+
+THen 
+
+$ sudo make clean install
+
+
