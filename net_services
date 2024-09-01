@@ -1,0 +1,29 @@
+
+
+==========================================
+net services
+==========================================
+
+TCP services examples 
+
+telnet to this server below
+
+$ telnet example.org 80
+
+and enter the following lines 
+
+GET / HTTP/1.1
+Host: example.org
+
+to terminate Crtl-D
+
+Likewise try out the curl utility with an option to record 
+details about its http connection 
+
+$ curl --trace-ascii trace_file http://www.example.org/
+
+youll get alot of output you can disregard, but it will
+also create a trace_file to check out. 
+
+this trace file will tell you everything that curl did with 
+the destination address

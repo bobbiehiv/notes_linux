@@ -1,0 +1,88 @@
+
+
+============================================
+sshd
+============================================
+
+an sshd server allowed to remotely connect toy your systems 
+requires a config file and host keys 
+
+most distros keep configs in /etc/ssh
+
+** dont confuse sshd_config with ssh_config
+
+you shouldnt normally need to change much in this file 
+it consists of key value pairs 
+
+important parameters
+
+HostKey file - uses file as host key
+
+PermitRootLogin value - Permits the superuser to log in with ssh
+	if set to yes 
+
+LogLevel level - Logs messages to syslog level (defaults to INFO)
+
+SyslogFacility name - Logs messages to syslog facality name (defaults to AUTH)
+
+X11Forwarding value - enables X windows system client tunneling if 
+	set to yes 
+
+XAuthLocation path - specifies the location of xauth utility 
+
+to have ssh start at boot use 
+
+$ systemctl enable sshd
+
+or to start up in general
+
+$ systemctl start sshd
+
+-------------------
+creating host keys
+-------------------
+
+Openssh has host key sets, each has a public key (.pub) and a private (no extention)
+
+to create keys use 
+
+$ ssh-keygen -t rsa -N '' -f /etc/ssh/ssh_host_rsa_key
+and/or 
+$ ssh-keygen -t dsa -N '' -f /etc/ssh/ssh_host_dsa_key
+
+-------------
+ssh clien
+-------------
+
+to log into a remote host 
+
+$ ssh username@remote_host
+
+you can also pipe dirs to remote hosts
+
+$ tar zcvf - dir | ssh remote_hot tar zxvf -
+
+---------------
+file transfer
+---------------
+
+openssh includes file transfer programs scp and sftp which are replacements for 
+rcp and ftp
+
+it works mostly like cp 
+
+Copy a file from a remote host to the current directory 
+
+$ scp user@host:file . 
+
+copy from a local machine to a remote host 
+
+$ scp file user@host:dir
+
+copy a file from one remote host to another 
+
+$ scp user1@host1:file user2@host2:dir 
+
+sftp works just like ftp, with get and put commands 
+
+

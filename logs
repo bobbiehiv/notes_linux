@@ -1,0 +1,80 @@
+
+
+====================================================
+logs
+====================================================
+
+most system programs write their diagnostic output as messages to the syslog service
+
+Journald (with systemd) waits for these messages and sends them to 
+the appropriate channels 
+
+run journalctl to see the outputs
+
+$ journalctl
+
+journald srote its files in binary in /var/log/journal
+
+filtering journalctl's output 
+
+you can search with a specific pid ex. 
+
+$ journalctl _PID=8792
+
+by time with -s 
+
+$ journalctl -s -4h
+
+where -4h is 4 hours, you can also use 
+specific times/days/etc
+
+you can also filter by systemd units 
+
+$ journalctl -u cron.service
+
+if you dont know the name of a perticular unit, try this 
+
+$ journalctl -F _SYSTEMD_UNIT
+
+the -F option shows all values in the journal for a perticular feild 
+
+list all available fields with -N
+
+$ journalctl -N
+
+filter by text 
+
+$ journalctl -g 'kernal.*memory'
+
+boot logs 
+
+$ journalctl -b 
+
+to start at the previous boot use an offset of -1 
+
+$ journalctl -b -1
+
+View Boots by IDs 
+
+$ journalctl --list-boots
+
+serach for specific severity levels with 
+
+$ journalctl -p 3 
+
+for general log monitoring use 
+
+$ journalctl -f 
+
+-------------------
+log file rotation 
+--------------------
+
+most distros use the logrotate utility 
+
+logrotate sections the log information into chunks 
+then deletes data as it gets older and older renaming it as well 
+
+however the journals stored in /var/log/journal dont need rotation because 
+journald itself manages removing messages 
+

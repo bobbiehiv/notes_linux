@@ -1,0 +1,64 @@
+
+
+=============================================
+net_diagnostics
+=============================================
+
+---------
+netstat
+---------
+
+useful netstat options 
+
+-t 	prints tcp port info
+-u 	prints udp port info 
+-l	prints listening ports 
+-a 	prints every active port
+-n 	disables name lookups 
+-4,-6	specifiy ipv4 or 6 
+
+-------
+lsof
+-------
+
+can track open files but also list the programs using ports 
+
+$ sudo lsof -i 
+
+shows users a process IDS for server and client programs 
+
+disable name resoloution with 
+
+$ sudo lsof -n -i
+
+filter by protocol and port 
+
+use the following to see what process is using a certian port 
+
+$ lsof -i:port
+
+$ lsof -iprotocol@host:port
+
+filter by connection status 
+
+$ lsof -iTCP -sTCP:LISTEN
+
+-----------
+tcpdump
+-----------
+
+to see everything that crossing your netowork use tcpdump 
+
+$ tcpdump 
+
+tell it to be more specific with parameters 
+
+$ tcpdump tcp 
+
+or see web and udp packets try 
+
+$ tcpdump udp or port 80 or port 443
+
+--- or just use wireshark tbh
+
+

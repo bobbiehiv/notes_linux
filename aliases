@@ -1,0 +1,33 @@
+
+
+==========================================
+create alias
+==========================================
+
+run more than one command, 
+
+$ cd /usr; ls; cd -
+
+(cd -) puts us where we started
+
+make the name and check to see if its available
+
+$ type dumb
+
+dumb is not taken, create the alias!
+
+$ alias dumb='cd /usr; ls; cd -'
+
+$ dumb
+
+then to remove the alias 
+
+$ unalias dumb
+
+you can use the alias to set desire functionality to regular functions 
+
+check all aliases with 
+
+$ alias
+
+

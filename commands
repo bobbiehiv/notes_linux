@@ -1,7 +1,15 @@
 
 ==============================================
-Basic commands
+commands
 ==============================================
+
+There are four types of commands 
+
+an executalbe program - bin, .exe 
+a command built into the shell itself - cd, ls, etc 
+a shell function - mini shell scripts 
+and an alias - commands we define
+
 
 ls			show files
 ls -a 			Show hidden files
@@ -50,7 +58,11 @@ clear			clear screen
 
 bin 			same as exe
 
-=============darkweb==================
+type			find out which type of command you are using 
 
-apt-get install tor -y 	
+which			to determine the exact location of an executable (only for executables)
+
+whatis			displays a name and one line description from a man page
+
+
 

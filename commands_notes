@@ -3,6 +3,19 @@
 commands_notes
 =================================
 
+===
+arp
+===
+
+View the arp cache with the command 
+
+$ ip -4 neigh
+
+delete an arp cache 
+
+$ ip neigh del 'host' dev 'interface'
+
+
 ===============
 $ grep 
 ===============

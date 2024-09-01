@@ -1,0 +1,216 @@
+
+================================================
+User space 
+===============================================
+
+User space starts in this order
+
+- init 
+
+- Essential low-level services such as udevd and syslogd
+
+- Network config
+
+- mid and high level services ( cron printing and so on )
+
+- log in prompts, guis and high level applications such as web servers
+
+===========================
+init
+===========================
+
+found with the rest of the binnarys in /sbin 
+purpose is to start and stop essential service processes 
+Most all current versions of init are systemd
+
+Tradational init is basically a series of scripts that init runs 
+one at a time in sequence... each script starting one service or 
+configuring a piece of the system. 
+
+Flaws of init are as follows 
+	performance suffers becase you cant run two parts of the boot sequence at once
+
+	manageing a running system is difficult with PIDs
+
+	a lot of confusing code 
+	
+What init do you have 
+
+IF you have /usr/lib/systemd and /etc/systemd --- you have systemd
+
+if you have /etc/init --- you have upstart probably 
+
+if you have /etc/initab youre running system V init ... probably
+
+
+=============================
+systemd 
+=============================
+
+systemd can track service daemons after they start and group together 
+multiple processes associate with a service 
+
+systemd operates processes and services like other inits 
+
+	but also manages filesystem mount, monitors network connections requests
+	runtimers etc
+
+each capibility is called a unit type, and each function is called a unit
+
+when you turn on a unit you "activate" it 
+
+and each unit has its own config file
+
+		most important units
+
+	Service units - controls the service daemons
+	Target Units - control other units, usually by grouping 	
+	Socket Uniys - represent incoming netowrk connection request locations 
+	Mount Units - represent the attachment of filesystems to the system
+
+$ systemctl -p UnitPath show 
+	the current systemd config search path
+
+$ pkg-config systemd --variable=systemdsystemunitdir
+$ pkg-config systemd --variable=systemdsystemconfdir
+
+=============================
+unit files
+=============================
+
+[unit]
+ details about the unit, description and dependancy info 
+
+[service]
+ details how to prepare start and reload the service
+
+============================
+systemctl
+============================
+
+$ systemctl lit-units
+	you dont need list-units but it helps!
+	use --full
+	and --all
+
+$ systemctl status sshd.service
+
+	get the status of a unit
+
+$ journalctl --unit=unit_name
+
+systemctl commands 
+
+	$ systemctl start; stop; restart
+
+however if you have change the configuration file
+
+	$ systemctl reload unit  - reloads the config for that unit
+	$ systemctl daemon-reload  - reloads all unit configs 
+
+These request are called jobs and you can check on them with 
+
+$ systemctl list-jobs
+
+===============================
+adding units to systemd
+===============================
+
+normally you can store youre created system unit files in 
+/etc/systemd/system/ so that you wont confuse it with default files 
+but also so upgrades wont overwrite them 
+
+create a file name test1.target in /etc/systemd/system
+
+$ touch test1.target
+$ nvim test1.target
+[Unit]
+Description=test 1
+
+Then create a test2.target file with a dependency on test1.target 
+
+$ touch test2.target
+$ nvim test2.target
+[Unit]
+Description=test 2
+Wants=test1.target
+
+because of the 'wants' if you start test2, test 1 will also start 
+
+try it out 
+
+$ systemctl start test2.target
+
+Verify that both are active
+
+$ systemctl status test1.target test2.target 
+
+If the file has an [install] option you will need to enable the unit
+before you start it 
+
+============================================
+removing the units
+============================================
+
+first deactivate the unit
+
+$ systemctl stop unit
+
+if the uniit has an install section you can disable it 
+
+$ systemctl disable unit
+
+you can then remove the unit file
+
+===========================================
+systemd forks
+===========================================
+
+there are two basic startup styles for systemd 
+
+type=simple
+	the service process doesnt fork and terminate 
+type=forking 
+	the service forks and systemd expects the original 
+	service to process to terminate
+there is also 
+
+type=notify 
+	when ready the service sends a notification 
+type=dbus 
+	when ready the service registers itself on the dbus
+type=oneshot
+	the service terminates after starting with no chilren
+type=idle 
+	waits untill everything else is done 
+
+===============================================
+systemd dependancys
+===============================================
+
+syntax for dependancys 
+
+requires 
+	stricter, when activating unit with a requires systemd will 
+attempt to start dependancies and if it fails the unit will be deactivated
+
+wants 
+	dependancies for activation only, systemd doesnt care if the dependancies fail
+
+requisite 
+	the dependancies must already be active inorder for the unit to be activated 
+
+Conflicts 
+	Negative dependancies, systemd will inactivate conflicting dependancnes
+
+View a units dependancies with the following 
+
+$ systemctl show -p type unit
+
+use the modifiers 
+
+before or after to order create the order in which things will start
+
+---to be cont---
+
+

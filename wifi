@@ -1,0 +1,34 @@
+
+
+===================================================
+wifi
+===================================================
+
+to view and change the kernal device and netowrk configs with 
+iw
+
+to use iw you need to know the device name ex 'wlan0'
+
+use iw to dump a list of available networks 
+
+$ iw dev (wirless card) scan
+
+you may have to set the dev to up first 
+
+$ ip link set  wlan0 up
+
+use iw to connect a netowrk dev to a unsecured wireless netowrk 
+
+$ iw wlan0 connect (SSID)
+
+*note
+
+for most wireless security setups linux relies on the wpa_supplicant daemon to 
+manage both auth and encryption for a wireless network interface
+
+it can handle wpa2 and 3, dont use wpa
+
+when the daemon first starts it reads the daemon file located in 
+/etc/wpa_supllicant.conf and attempts to identify it self to an access point
+
+

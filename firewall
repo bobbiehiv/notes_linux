@@ -1,0 +1,96 @@
+
+
+===================================================
+firewalls
+===================================================
+
+in linux you create firewall rules ins series known as a chain
+a set of chains makes up a table 
+
+all of these data structures are maintained by the kernel in a system 
+called iptables 
+---being replaced by nftables
+
+you'll primarily focus on an iptable caled filter 
+
+view the current config 
+
+$ iptables -L
+
+the output will usually be an empty set of chains 
+
+	Chain INPUT (policy ACCEPT)
+	target     prot opt source               destination
+
+	Chain FORWARD (policy ACCEPT)
+	target     prot opt source               destination
+
+	Chain OUTPUT (policy ACCEPT)
+	target     prot opt source               destination
+
+the poilicy Accept tells you that if it doesnt know what to do with a packet 
+it will by default accept it
+
+to set a policy chain to DROP instaed do the folllwing 
+
+$ iptables -P FORWARD DROP
+
+block a specific ip address?
+
+$ iptables -A INPUT -s 192.168.34.63 -j DROP
+
+to block an entire subnet and port try 
+
+$ iptables -A INPUT -s 192.168.34.0/24 -p tcp --destination-port 25 -j DROP
+
+to allow you would normally run
+
+$ iptables -A INPUT -s 192.168.34.37 -j ACCEPT
+
+However, the rules are read from top down so you may have to use insert
+
+IF you have to first delete the ACCEPT rule (assuming it was third) 
+
+$ iptables -D INPUT 3
+
+Then run it agian with the insert option
+
+$ iptables -I INPUT -s 192.168.34.37 -j ACCEPT
+
+(to insert somewhere else add the rule number to the end)
+
+------------------------
+implicit deny strat
+------------------------
+
+$ iptables -P INPUT DROP 
+
+	will deny everything 
+
+to enable icmp use 
+
+$ iptables -A INPUT -p icmp -j ACCEPT
+
+then add ip's
+
+$ iptables -A INPUT -s 127.0.0.1 -j ACCEPT
+$ iptables -A INPUT -s (ipaddress) -j ACCEPT
+
+Its a good idea to deny all tcp connections but still be able to 
+have your host can make tcp connection outside 
+
+because all tcp connections start with SYN 
+
+$ iptables -A INPUT -p tcp '!' --syn -j ACCEPT
+
+the ! indicated negation, so ! --syn matches any non syn packet
+
+next allow your dns server
+
+$ iptables -A INPUT -p udp --source-port 53 -s (dnsserveraddress) -j ACCEPT
+
+And then say you want SSH 
+
+$ iptablesj -A INPUT -p tcp --destination-port 22 -j ACCEPT
+
+

@@ -1,0 +1,23 @@
+
+============================================
+dns resolving
+============================================
+
+if dns wont resolve or get setting from dhcp
+
+you can manually set the conf file in  
+	
+/etc/systemd/resolved.conf
+
+$ vim resolved.conf
+
+[Resolve]
+
+DNS=1.1.1.1 8.8.8.8
+
+save and exit 
+
+$ resolvectl status
+
+to check settings
+
