@@ -1,0 +1,39 @@
+
+
+===============================================
+cat
+===============================================
+
+cat can be used for more than just displaying text 
+
+you can also join multiple files together
+
+for instance if you had movie.mpeg.001 movie.mpeg.002 .... 
+movie.mpeg.099
+
+you could join them all together with the following 
+
+$ cat movie.mpeg.0* > movie.mpeg
+
+and because wildcards always expand in sorted order the arguements 
+will be arranged in the correct order 
+
+cat with no arguements will give you a promp to echo 
+
+$ cat 
+enter text here 
+ctrl-D
+
+we can use this to create small text files 
+
+$ cat > dumbo.txt
+more dumb text here 
+
+$ cat dumbo.text 
+more dumb text here 
+
+we can redirect it as well back to std output 
+
+$ cat < dumbo.txt 
+
+

@@ -1,0 +1,44 @@
+
+
+=============================================
+pipes and filters
+=============================================
+
+the capability to read data from a std input and send to std 
+output is utilized with pipes 
+
+the std output of one command can be piped into the std input 
+of another 
+
+for instance 
+
+$ ls -l /usr/bin | less
+	pipes the output of the ls command into less to page thru
+
+you may also sort them 
+
+$ ls -l /bin /usr/bin | sort | less
+
+or use the uniq command which is often used with sort, uniq receives input 
+and removes the duplicates 
+
+$ ls -l /bin /usr/bin | sort | uniq | less
+
+or you could see only the duplicates with 
+
+$ ls -l /bin /usr/bin | sort | uniq -d | less
+
+--
+wc
+--
+
+use wc to print the word, line, and byte counts
+
+$ wc ls-output.txt
+
+use the -l option to print only line counts and add it to the above command
+
+$ ls -l /bin /usr/bin | sort | uniq | less | wc -l
+
+
+
