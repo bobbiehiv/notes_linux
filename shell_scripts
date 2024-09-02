@@ -1,0 +1,251 @@
+
+
+=========================================================================
+shell scripts
+=========================================================================
+
+shell scripts generally start with 
+
+#!/bin/sh
+
+#! is called the shebang 
+
+you can list any commands you want the shell to execute following #!/bin/sh
+
+ex 
+#!/bin/sh
+# print something then run ls 
+
+echo about to run the ls command 
+ls
+
+you will also need to set the exe bit and the read bit 
+
+$ chmod +rx script 
+	this allows anyone to run the script, change perm if you want 
+
+
+
+when running a script the shell first looks for varibles, globs and other 
+substitutions and performs the substitutions if they appear. 
+
+then the shell passes the subs to the command 
+
+----------
+quotes
+----------
+
+use single quotes to make the shell leave a string alone 
+
+$ grep 'r.*t' /etc/passwd
+
+all characters between the two single quuotes make up a single parameter
+
+always use single quotes for strings like this first 
+
+double quoutes however work similarly but the shell will expand any varibles 
+that appear within the double quotes 
+
+try 
+
+$ echo "there is no * in my path: $PATH"
+	the shell subs $PATH but not *
+
+----------------------
+literal single quotes
+----------------------
+
+easiest way is to just use a backslash 
+
+$ echo this isn\'t stupid
+
+----------------------
+individual arguements
+----------------------
+
+$1 $2 and all varibles named as positive nonzero integers contain the valies 
+of the script parameters, or arguements 
+
+example script 
+
+#!/bin/sh
+echo first argument: $1
+echo third argument: $3 
+
+will print as
+
+$ ./pshow one two three
+echo first argument: one
+echo third argument: three
+
+use the built in shell command shift to shift from 
+2 to 1, 3 to 2, etc 
+
+#!/bin/sh
+echo first argument: $1
+shift
+echo first argument: $1
+shift
+echo first argument: $1
+
+run it to see it shift 
+
+$ ./shiftex one two three
+
+#!/bin/sh
+echo first argument: one
+echo first argument: two
+echo first argument: three
+
+--------------------------------
+
+the $# varible holds the number of arguments passed to a script and is important 
+when running shif in a loop to pick thru arguments 
+
+the $@ varible represents all of a scripts arguments and is useful for passing them 
+to a command inside of a script
+
+the $0 varible holds the name of the scripts and is useful for generating diagnostic 
+messages 
+
+the $$ varible holds the process ID of the shell 
+
+the $? varible holds the exit code of the last command used 
+
+----------------------------------
+
+Exit codes 
+
+when a program finishes it will leave an exit code 
+when the exit code is 0 it usually means the program ran without a problem 
+
+if its any other number it could mean there was an error
+run a function or program and check 
+
+$ echo $?
+
+that code will be overwritten by the next process, so if you need that code 
+save it quick * running it twice will always show 0 because the first echo $? ran 
+fine 
+
+-------------------------------------
+
+Conditionals 
+
+the shell uses if/then/else and case statements 
+
+example script 
+#!/bin/sh
+if [ $1 = hi ]; then
+    echo 'the first argument was "hi"'
+else 
+    echo -n 'the first argument was not "hi" --'
+    echo it was '"'$1'"'
+fi
+
+the word if else and fi are all keywords while everything else is a command 
+
+for the above 
+
+the shel funs the command after the if keword and collects the code of that command 
+
+if the exit code is 0, the shell executes the commands that follow 
+
+if it was not 0 it runs the else clause 
+
+and the conditional ends at fi 
+
+* the ; after [] is useful for seperating the commands, however you could 
+just use a seperate line as well
+
+---------------------------------------------
+
+Logical constructs 
+
+&& 
+
+with && the shell will run the first command and if the exit code is 0 
+run the next command
+
+||
+
+the || is similar, if the command before the || returns a non zero exit code than it 
+will run the next commnad 
+
+$ command1 && command2 
+$ command1 || command2
+
+or 
+
+#!/bin/sh
+if [ "$1" = hi ] || [ "$1" = bye ]; then
+    echo 'the first argument was "'$1'"'
+fi
+
+invert a test by placing a ! before a test 
+
+#!/bin/sh
+if [ ! "$1" = hi ] || [ "$1" = bye ]; then
+    echo 'the first argument was "'$1'"'
+
+fi
+
+--------------------------------------------------
+
+[ ] is also know as test, if the test exit code is 0 then its true 
+non zero then fails 
+
+--------------------------------------------------
+
+there are dozens of test operations but they all fall into 
+three main catagories 
+
+file, string, and arthmitic tests 
+
+most file tests like -f are called unary operations because they 
+require only one argument... the file to test 
+
+ two important file tests 
+
+	-e returns true if a file exists 
+	-s returns true if a file is not empty 
+
+  file type operators 
+  -f 		regular file 
+  -d		directory 
+  -h 		symbolic link
+  -b 		block device
+  -c 		character device 
+  -p		named pipe
+  -s		socket
+
+  file permissions operators 
+  -r		readable 
+  -w		writable 
+  -x		executable
+  -u		setuid
+  -g		setguid
+  -k		sticky
+
+three binary operators (tests that need two files as arguments )
+
+consider this with -nt (newer than)
+
+[ file1 -nt file2 ] 
+
+this will exit true if file 1 has a newer modification than file2 
+
+use -ot (older than) to do the opposite 
+
+and if you need to compare hard links, -ef compares and retuens true if 
+the share inode numbers and devices 
+
+-------------------------------------------------------
+
+=   - equals 
+!=  - not equals 
+-z  - true if an argument is empty 
+-n  - true if an argument is not empty 
+
+
+
