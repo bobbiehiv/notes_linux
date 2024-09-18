@@ -28,7 +28,7 @@ $ who | awk '{print $1,$4}'
 
 		* even in wrapped text the feilds continue the count 
 
-$ awk '{print $7,$10,$NF}' amigay.txt
+$ awk '{print $7,$10,$NF}' amitall.txt
 
 Adding output feild seerators to awk output
 
@@ -46,7 +46,7 @@ BEGIN and END
 
 to add text to the begining 
 
-awk 'BEGIN {print " is you gay? "} {print $0}' amigay.txt
+awk 'BEGIN {print " is you tall? "} {print $0}' amitall.txt
 
 pipe it with who to see active sessions 
 

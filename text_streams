@@ -8,11 +8,11 @@ use cat to redirect standard input
 
 $ cat > mytextfile
 	this is a test 
-	you are gay
+	you are tall
 
 $ cat mytextfile	
 	this is a test
-	you are gay
+	you are tall
 
 the > tells cat to direct to mytextfile not std output
 
@@ -29,10 +29,10 @@ $ diff mynewtextfile mytextfile
 
 now append the redirection operator
 
-$ echo 'this is a gayline' >> mynewtextfile
+$ echo 'this is a tallline' >> mynewtextfile
 $ diff mynewtextfile mytextfile
 	4d3
-	< this is my new gay line
+	< this is my new tall line
 
 Now grep with pipes 
 
@@ -45,11 +45,11 @@ $ cat mytextfile | grep -i this
 passing text streams
 --------------------
 
-create a file called gay.txt containing a list of commands 
+create a file called tall.txt containing a list of commands 
 
-$ touch gay.txt 
+$ touch tall.txt 
 
-$ cat gay.txt
+$ cat tall.txt
 	bzcat
 	cat
 	cut
@@ -59,22 +59,22 @@ $ cat gay.txt
 
 grep the lines containing cat
 
-$ cat gay.txt | grep cat
+$ cat tall.txt | grep cat
 
 Or 
 
-$ grep cat gay.txt
+$ grep cat tall.txt
 	send text to stdout
 
-compress gay.txt with gzip
+compress tall.txt with gzip
 
-$ gzip gay.txt
+$ gzip tall.txt
 $ ls 
-	gay.txt.gz
+	tall.txt.gz
 
 use zcat to view the contents of the gzipped file
 
-$ zcat gay.txt.gz
+$ zcat tall.txt.gz
 	bzcat
 	cat
 	cut
@@ -115,38 +115,38 @@ $ sudo head -n 5 /var/log/syslog
 sed
 ----
 
-checkout files in gay.txt.gz that dont have cat in the name
+checkout files in tall.txt.gz that dont have cat in the name
 
-$ zcat gay.txt.gz | grep -v cat
+$ zcat tall.txt.gz | grep -v cat
 
-unzip gay.txt with gzip
+unzip tall.txt with gzip
 
-$ gunzip gay.txt.gz
+$ gunzip tall.txt.gz
 
 use sed to list only the lines containing cat 
 
-$ sed -n /cat/p < gay.txt
+$ sed -n /cat/p < tall.txt
 
-the less than sign directs the contents of gay.txt into the 
+the less than sign directs the contents of tall.txt into the 
 sed command, the word between //'s is the search word
 	the -n says produce no output, except for 
 	what p specifies 
 
 to run it with out the -n 
 
-$ sed /cat/d < gay.txt
+$ sed /cat/d < tall.txt
 
 sed will print everything from the file EXcept what is in "//d" 
 
 sed is useful for replace or swaping strings 
 
-use the s option to swap out cat for dog in gay.txt 
+use the s option to swap out cat for dog in tall.txt 
 
-$ sed s/cat/dog/ < gay.txt
+$ sed s/cat/dog/ < tall.txt
 
 you dont have to use < , the following will make a back up as well 
 
-$ sed -i.backup s/cat/dog/ gay.txt
+$ sed -i.backup s/cat/dog/ tall.txt
 
 **if you dont use .backup you will rewrite origanal prior to 
 	modifications
@@ -157,25 +157,25 @@ data integrity
 
 comparing checksums
 
-$ sha256sum gay.txt
+$ sha256sum tall.txt
 	prints checksum
 
 Create a file that contains that value use the sha256sum command
 
-$ sha256sum gay.txt > sha256.txt
+$ sha256sum tall.txt > sha256.txt
 
-to verify the gay.txt file use the same command, -c and the file 
+to verify the tall.txt file use the same command, -c and the file 
 
 $ sha256sum -c sha256.txt 
-	gay.txt: ok
+	tall.txt: ok
 
 if anyhting changes it will fail, for instance 
 
-$ echo "stupid" >> gay.txt
+$ echo "stupid" >> tall.txt
 	run the check again 
 
 $ sha256sum -c sha256.txt 
-	gay.txt: FAILED
+	tall.txt: FAILED
 
 ---------------
 octal dump (od)
@@ -185,7 +185,7 @@ the octal dump is used for debugging appplications and files
 by itself the od command will just list a files contents in 
 	octal format
 
-$ od gay.txt
+$ od tall.txt
 
 0000000 075142 060543 005164 060543 005164 072543 005164 062550
 0000020 062141 066012 071545 005163 062155 071465 066565 067012
@@ -197,19 +197,19 @@ octal value of that column
 
 Need to view in hexidecimenl? use -x 
 
-$ od -x gay.txt
+$ od -x tall.txt
 
 0000000 7a62 6163 0a74 6163 0a74 7563 0a74 6568
 
 You can also use the command to debug scripts 
 
-$ od -c gay.txt
+$ od -c tall.txt
 
 0000000 b z c a t \n c a t \n c u t \n h e
 
 View without offset info
 
-$ od -An -c gay.txt
+$ od -An -c tall.txt
 
 b z c a t \n c a t \n c u t \n h e
 

@@ -245,7 +245,124 @@ the share inode numbers and devices
 =   - equals 
 !=  - not equals 
 -z  - true if an argument is empty 
--n  - true if an argument is not empty 
+-n  - true if an argument is not empty
 
+--------------------------------------------------------
 
+case 
+
+case is a conditional construct that is useful for matching strings 
+it does not evalute exit codes, however it does do pattern matching 
+
+example 
+!#/bin/sh
+case $1 in 
+    bye)
+    	echo fine, bye.
+	;;
+    hi|hello)
+    	echo Nice to see you 
+	;;
+    what*)
+    	echo Whatever
+	;;
+    *)
+    	echo 'huh?'
+	;;
+esac
+
+--- the script matches $1 against each case value demarceted with the ')'
+--- if a case value matches $1 the shell executes the command below it untill it hits ;;
+	then it skips to the esac
+--- the conditional ends with esac
+
+for each case value you can match a single string or multiple strings seperate with | 
+
+	end each case with ;;
+
+-------------------------------------------------------------
+
+Loops 
+
+for loops 
+
+example 
+!#/bin/sh
+for str in one two three four; do 
+    echo $str
+done
+
+if the above, it will set teh $str varible to the first of the values (one)
+runs the command between do and done 
+goes back and does the next value untill its out of values 
+
+will print out 
+one 
+two 
+three
+four
+
+while loops 
+
+while loops use exit codes, like the if conditional
+
+you can break out of while loops with the break statment or until
+probably wont use while loops often in shell scripts tho 
+
+--------------------------------------------------------------
+
+Temp file management 
+
+use the mktemp command to create temp filenames
+
+example 
+
+#!/bin/sh
+TMPFILE1=(mktemp /tmp/im1.XXXXXX)
+TMPFILE2=(mktemp /tmp/im2.XXXXXX)
+
+cat /proc/interrupts > $TEMPFILE1
+sleep 2 
+cat /proc/interrupts > TEMPFILE2
+diff $TEMPFILE1 $TEMPFILE2
+rm -f $TEMPFILE1 $TEMPFILE2
+
+the argument to mktemp is a template
+mktemp converts XXXXXX to a unique set of characters and creates 
+an empty file with that name 
+
+if temp file scripts are aborted they leave behind scraps in /tmp
+
+use the trap command to avoid this problem 
+
+#!/bin/sh
+TMPFILE1=(mktemp /tmp/im1.XXXXXX)
+TMPFILE2=(mktemp /tmp/im2.XXXXXX)
+trap "rm -f $TEMPFILE1 $TEMPFILE2; exit 1" INT
+
+---------------------------------------------------------------
+
+Utilities 
+
+basename 
+useful for striping the extention of a filename or to get rid of the 
+directories in a full path name 
+
+$ basename example.html
+$ basename ~/home/me/example
+
+	both will return 'example'
+
+example 
+
+#!/bin/bash
+for file in *.gif; do 
+	# exit if there are no files 
+    if [ ! -f $file }; then
+    	exit
+    fi
+    b=$(basename $file .gif)
+    echo Converting $b.gif to $b.png...
+    giftopnm $b.gif | pnmtopng > $b.png
+done
 

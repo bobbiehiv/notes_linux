@@ -103,3 +103,24 @@ code commenting
  gcc  --> Comment/uncomment the current line
  gc{motion}  --> Comment/uncomment the lines covered by {motion}
 
+
+--------------------------------------------------------------------------------
+
+some notes 
+
+to uncomment multiple lines 
+
+- put you cursor on the first # and press ctrl-v 
+	then go to the last commented line and press x
+
+to comment multiple lines 
+
+- go to the first line you want to comment and press ctrl-v  
+	then move down to the last line 
+		press shift-I for insert mode
+			press # and then esc
+
+
+
+
+

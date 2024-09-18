@@ -5,9 +5,9 @@ Enviroment varibles
 The shell can store temorary varibles
 called shell varibles containing the value of text strings.
 
-$ STUFF=gay
+$ STUFF=tall
 $ echo $STUFF
-  gay
+  tall
 
 you can assign an enviroment varible with the export command
 
@@ -47,10 +47,10 @@ $ echo $PATH
 
 use the = to create your own varibles
 
-$ myvar=gayguy
+$ myvar=tallguy
 
 $ echo $myvar
-  gayguy
+  tallguy
 	this creates a varible that is only locally available
 
 $ export myvar 

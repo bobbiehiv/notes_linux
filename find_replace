@@ -1,0 +1,21 @@
+
+=======================================================================
+find and replace
+=======================================================================
+
+make a test folder with test files
+
+# mkdir tests
+# cd tests
+# touch test1
+# touch test2
+
+add some information to the files 
+
+# echo "have some information about cats" | cat >> test1
+# echo "have some more information cats" | cat >> test2
+
+find and replace string "cat" in the files in the tests dir with "dogs"
+
+# find -type f -exec sed -i 's/cats/dogs/g' {} +
+
